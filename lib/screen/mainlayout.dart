@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_project/about.dart';
+import 'package:mini_project/screen/about.dart';
 
 import 'homePage.dart';
 

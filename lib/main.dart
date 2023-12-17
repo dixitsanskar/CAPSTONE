@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mini_project/homePage.dart';
+import 'package:mini_project/route/route.dart';
+import 'package:mini_project/screen/homePage.dart';
 
-import 'mainlayout.dart';
+import 'screen/mainlayout.dart';
 
 void main() {
   runApp(const MainApp());
@@ -13,10 +14,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
-      title: 'Problem Statement Search',
+    return  GetMaterialApp(
+      title: 'CAPSTONE',
       debugShowCheckedModeBanner: false,
-      home:  MyHomePage(),
+      initialRoute: Routes.mainscreen,
+      getPages: Routes.routes ,
     );
   }
 }
