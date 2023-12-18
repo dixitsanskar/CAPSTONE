@@ -8,6 +8,7 @@ import '../route/route.dart';
 class HomePage extends StatelessWidget {
    HomePage({super.key});
   final controller = Get.put(HomeController());
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +31,37 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
+             // margin: EdgeInsets.only(bottom: 10),
+              height: Get.height * 0.3,
+              width: Get.width * 0.6,
+              child: Column(
+                children: [
+                  Text('CAPSTONE', style: TextStyle(
+                    fontSize: 70,
+                    fontWeight: FontWeight.bold
+                  ),),
+                  SizedBox(height: 10,),
+                  Row(mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                  Text('C', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), 
+                  Text('ollaborative ', style: TextStyle( fontSize: 20),), 
+                  Text('A', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), Text('pproach to ', style: TextStyle( fontSize: 20),),
+                  Text('P', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), Text('roblem ', style: TextStyle( fontSize: 20),),
+                  Text('S', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), Text('olving ', style: TextStyle( fontSize: 20),),
+                  Text('T', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), Text('hrough ', style: TextStyle( fontSize: 20),),
+                  Text('O', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), Text('nline ', style: TextStyle( fontSize: 20),),
+                  Text('N', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), Text('etworking ', style: TextStyle( fontSize: 20),),
+                   Text('E', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), Text('nvironment ', style: TextStyle( fontSize: 20),),
+                  ],)
+
+                  ],)
+                  )
+               ,
+            Container(
               width: Get.width * 0.7,
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
+                controller: _searchController,
                 decoration: InputDecoration(
                   focusColor: Colors.black,
                   hintText: 'Search',
@@ -86,6 +115,7 @@ class HomePage extends StatelessWidget {
               width: Get.width * 0.7,
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
+                controller: _searchController,
                 decoration: InputDecoration(
                   focusColor: Colors.black,
                   hintText: 'Search',

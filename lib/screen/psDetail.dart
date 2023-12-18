@@ -31,46 +31,7 @@ class ProblemStatementDetails extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  child: Text(
-                    'Problem Statement',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  child: Text(
-                    'Date',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  child: Text(
-                    'Description',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  child: Text(
-                    'Solution',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+                
               ],
             ),
           ),

@@ -11,7 +11,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-int _currentIndex = 0;
+
 
   final List<Widget> _tabs = [
    HomePage(), 
@@ -20,6 +20,7 @@ int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    int _currentIndex = 0;
      return DefaultTabController(
       length: _tabs.length,
       child: Scaffold(
