@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mini_project/controller/SearchController.dart';
+import 'package:mini_project/service/handlingDataView.dart';
 import 'package:mini_project/widget/infoCard.dart';
 
 import '../controller/HomeController.dart';
@@ -9,6 +11,8 @@ class HomePage extends StatelessWidget {
    HomePage({super.key});
   final controller = Get.put(HomeController());
   final TextEditingController _searchController = TextEditingController();
+  final searchController  = Get.put(searchhController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +64,14 @@ class HomePage extends StatelessWidget {
             Container(
               width: Get.width * 0.7,
               margin: EdgeInsets.symmetric(horizontal: 20),
-              child: TextField(
+              child: TextFormField(
                 controller: _searchController,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
                 decoration: InputDecoration(
                   focusColor: Colors.black,
                   hintText: 'Search',
@@ -74,7 +84,8 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(height: Get.height * 0.05),
             GestureDetector( onTap:() {
-              controller.onpressed();
+             searchController.searchProblemStatement(_searchController.text);
+             controller.onpressed();
           },
             child:
             Container(
@@ -102,6 +113,7 @@ class HomePage extends StatelessWidget {
   }
 
    Widget _SearchPage(){
+    
       return Scaffold(
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +140,8 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(width: Get.width * 0.03,), 
           GestureDetector( onTap:() {
-              
+              searchController.searchProblemStatement(_searchController.text);
+
           },
             child:
             Container(
@@ -155,15 +168,23 @@ class HomePage extends StatelessWidget {
                 ),),
               ),
              Expanded(
-        child: SingleChildScrollView(
+        child: GetBuilder<searchhController>(builder: (_){
+          return HandlingDataView(statusRequest: searchController.statusRequest, widget: 
+        SingleChildScrollView(
           child: Column(
-            children: List.generate(10, (index) => GestureDetector(onTap:(){
+            children: List.generate( searchController.searchResuts.length , (index) => GestureDetector(onTap:(){
               Get.toNamed(Routes.psscreen);
             },
-            child: InfoCard(),
+            child: InfoCard(
+              title: searchController.searchResuts[index].title ,
+              description: searchController.searchResuts[index].problemStatement, ),
             )),
           ),
-        ),)
+        ),
+        );
+        },
+        )
+        )
           ],
         ),
         );

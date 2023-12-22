@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_project/screen/about.dart';
+import 'package:mini_project/screen/dashboard.dart';
 
 import 'homePage.dart';
 
@@ -15,7 +16,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _tabs = [
    HomePage(), 
-   AboutUs()
+   AboutUs(),
+   DashboardPage()
   ];
 
   @override
@@ -57,6 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
                      // icon: Icon(Icons.info),
                       text: 'About',
                     ),
+                    Tab(
+                      text: 'Dashboard',
+                    )
                   ],
                 ),
               ),

@@ -2,12 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mini_project/service/handlingdatacontroller.dart';
 
 import '../model/problemModel.dart';
 import '../service/service.dart';
+import '../service/statusrequest.dart';
 
-class SearchController extends GetxController{
-
+class searchhController extends GetxController{
+  late StatusRequest statusRequest;
   var searchResuts = <Results>[].obs;
   int _pageNo = 1 ;
   var textfield = 0.obs;
@@ -28,11 +30,21 @@ class SearchController extends GetxController{
 
   void searchProblemStatement(String searchVal) async
   {
+     statusRequest = StatusRequest.loading;
     var result = await SearchServices.searchProblemStatement(_pageNo, searchVal);
+   
+    statusRequest= handlingData(result);
+    
     if(result.isNotEmpty)
     {
+      statusRequest = StatusRequest.success;
       searchResuts.addAll(result);
       _pageNo++;
+      
+    }
+    else
+    {
+      statusRequest = StatusRequest.failure;
     }
     update();
   }

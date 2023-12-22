@@ -1,26 +1,46 @@
-
+import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:mini_project/model/problemModel.dart';
+import 'package:mini_project/service/statusrequest.dart';
 
-class SearchServices{
-
-  static Future<List<Results>> searchProblemStatement(int pageIndex, String searchVal) async
-  {
-    var url = 'https://127.0.0.1:5000/search';
-    var response = await Dio().get(url, queryParameters: {
-      'page': pageIndex,
-      'input_text': searchVal
+class SearchServices {
+  static Future<List<Results>> searchProblemStatement(
+      int pageIndex, String searchVal) async {
+    // var headers = {'Content-Type': 'application/json'};
+    var data = json.encode({
+      "input_text": searchVal ,
+      "page": pageIndex ,
     });
 
-    if(response.statusCode == 200)
-    {
-      var result = ProblemStatement.fromJson(response.data);
-      return result.results!;
-    }
-    else
-    {
+    var dio = Dio();
+
+    try {
+      var response = await dio.post(
+        'http://127.0.0.1:5000/search',
+        // options: Options(
+        //   headers: headers,
+        // ),
+        data: data,
+      );
+      // print(response.data);
+
+      if (response.statusCode == 200) {
+        var result = ProblemStatement.fromJson(response.data);
+        if (result.results != null) {
+          return result.results!;
+        } else {
+          // Handle the case where results are null
+          return [];
+        }
+      } else {
+        // Handle non-200 status code
+        print('Error: ${response.statusCode}, ${response.statusMessage}');
+        return [];
+      }
+    } catch (e) {
+      // Handle Dio errors or other exceptions
+      print('Error: $e');
       return [];
     }
-
   }
 }
