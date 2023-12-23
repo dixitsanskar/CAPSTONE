@@ -29,14 +29,17 @@ class Results {
   String? contributor;
   String? problemStatement;
   String? title;
+  int? percentage;
 
-  Results({this.author, this.contributor, this.problemStatement, this.title});
+  Results({this.author, this.contributor, this.problemStatement, this.title, this.percentage});
 
   Results.fromJson(Map<String, dynamic> json) {
     author = json['author'];
     contributor = json['contributor'];
     problemStatement = json['problem_statement'];
     title = json['title'];
+    percentage = json['percentage'];
+
   }
 
   Map<String, dynamic> toJson() {
@@ -45,6 +48,7 @@ class Results {
     data['contributor'] = this.contributor;
     data['problem_statement'] = this.problemStatement;
     data['title'] = this.title;
+    data['percentage'] = this.percentage;
     return data;
   }
 }

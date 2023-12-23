@@ -36,7 +36,7 @@ class searchhController extends GetxController{
     statusRequest= handlingData(result);
     
     if(result.isNotEmpty)
-    {
+    { searchResuts.value=[];
       statusRequest = StatusRequest.success;
       searchResuts.addAll(result);
       _pageNo++;

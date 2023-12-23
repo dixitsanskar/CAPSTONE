@@ -173,11 +173,12 @@ class HomePage extends StatelessWidget {
         SingleChildScrollView(
           child: Column(
             children: List.generate( searchController.searchResuts.length , (index) => GestureDetector(onTap:(){
-              Get.toNamed(Routes.psscreen);
+              Get.toNamed(Routes.psscreen, arguments: searchController.searchResuts[index]);
             },
             child: InfoCard(
               title: searchController.searchResuts[index].title ,
-              description: searchController.searchResuts[index].problemStatement, ),
+              description: searchController.searchResuts[index].problemStatement,
+              percentage: searchController.searchResuts[index].percentage.toString() ),
             )),
           ),
         ),
