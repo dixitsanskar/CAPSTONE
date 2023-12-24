@@ -6,7 +6,8 @@ import 'package:mini_project/service/statusrequest.dart';
 class SearchServices {
   static Future<List<Results>> searchProblemStatement(
       int pageIndex, String searchVal) async {
-    // var headers = {'Content-Type': 'application/json'};
+    var headers = {'Content-Type': 'application/json',
+    };
     var data = json.encode({
       "input_text": searchVal ,
       "page": pageIndex ,
@@ -16,13 +17,13 @@ class SearchServices {
 
     try {
       var response = await dio.post(
-        'http://127.0.0.1:5000/search',
-        // options: Options(
-        //   headers: headers,
-        // ),
+        'https://capstone-api-ci93.onrender.com/search',
+        options: Options(
+          headers: headers,
+        ),
         data: data,
       );
-      // print(response.data);
+      print(response.data);
 
       if (response.statusCode == 200) {
         var result = ProblemStatement.fromJson(response.data);
