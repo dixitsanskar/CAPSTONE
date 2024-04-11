@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mini_project/service/handlingdatacontroller.dart';
 
-import '../model/problemModel.dart';
-import '../service/service.dart';
-import '../service/statusrequest.dart';
+import '../../model/problemModel.dart';
+import '../../service/service.dart';
+import '../../service/statusrequest.dart';
 
 class searchhController extends GetxController{
   late StatusRequest statusRequest;

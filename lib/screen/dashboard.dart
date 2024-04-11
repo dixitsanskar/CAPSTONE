@@ -1,8 +1,11 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mini_project/screen/personalInfo.dart';
 import 'package:mini_project/screen/professionalInfo.dart';
+
+import '../logic/controller/authController.dart';
 
 class DashboardPage extends StatefulWidget {
   @override
@@ -11,7 +14,7 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   int _currentIndex = 0;
-
+  final controller = Get.put(AuthController());
   final List<Widget> _tabs = [
     PersonalInfo(),
     ProfessionalInfo(),
@@ -19,7 +22,8 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return
+     DefaultTabController(
       length: _tabs.length,
       child: Scaffold(
         body: Row(

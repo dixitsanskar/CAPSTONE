@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mini_project/controller/SearchController.dart';
+import 'package:mini_project/logic/controller/SearchController.dart';
 import 'package:mini_project/service/handlingDataView.dart';
 import 'package:mini_project/widget/infoCard.dart';
 
-import '../controller/HomeController.dart';
+import '../logic/controller/HomeController.dart';
 import '../route/route.dart';
 
 class HomePage extends StatelessWidget {
@@ -173,7 +173,7 @@ class HomePage extends StatelessWidget {
         SingleChildScrollView(
           child: Column(
             children: List.generate( searchController.searchResuts.length , (index) => GestureDetector(onTap:(){
-              Get.toNamed(Routes.psscreen, arguments: searchController.searchResuts[index]);
+              Get.toNamed(Routes.psscreen, arguments:{'searchData': searchController.searchResuts[index]});
             },
             child: InfoCard(
               title: searchController.searchResuts[index].title ,

@@ -1,19 +1,24 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mini_project/logic/controller/authController.dart';
 import 'package:mini_project/screen/about.dart';
 import 'package:mini_project/screen/dashboard.dart';
+import 'package:mini_project/widget/loginwidget.dart';
 
 import 'homePage.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
+  
+  final controller = Get.put(AuthController());
   final List<Widget> _tabs = [
    HomePage(), 
    AboutUs(),
@@ -30,6 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Stack(
           children: [
             TabBarView(
+              // dragStartBehavior: DragStartBehavior.,
               children: _tabs,
             ),
             Positioned(
@@ -44,11 +50,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 //color: Colors.black,
                 child: TabBar(
-                  indicatorColor: Colors.transparent,
+                  labelColor: Colors.white,
+                  unselectedLabelColor: Colors.white38,
+                  indicatorColor: Colors.white,
                   onTap: (index) {
-                    setState(() {
+                    if(index ==2 )
+                    {
+                      if(!controller.isSignedIn)
+                      {
+                        setState(() {
+                          showLoginPopup(context);
+                        });
+                       
+
+                      } else
+                        {
+                          setState(() {
+                            _currentIndex = index;
+                          });
+                        }
+                    }
+                    else
+                   { setState(() {
                       _currentIndex = index;
-                    });
+                    });}
+                    
                   },
                   tabs: [
                     Tab(
