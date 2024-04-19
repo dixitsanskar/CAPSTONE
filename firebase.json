@@ -1,13 +1,1 @@
-{
-  "hosting": {
-    "source": ".",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "frameworksBackend": {
-      "region": "asia-east1"
-    }
-  }
-}
+{"hosting":{"source":".","ignore":["firebase.json","**/.*","**/node_modules/**"],"frameworksBackend":{"region":"asia-east1"}},"flutter":{"platforms":{"android":{"default":{"projectId":"capstone-ffe40","appId":"1:429216916494:android:0268fb7f7f572f01a1085f","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"capstone-ffe40","configurations":{"android":"1:429216916494:android:0268fb7f7f572f01a1085f","ios":"1:429216916494:ios:4427bffefcc47e63a1085f","macos":"1:429216916494:ios:4427bffefcc47e63a1085f","web":"1:429216916494:web:018c2f92fccf2b27a1085f","windows":"1:429216916494:web:9d4790d387873307a1085f"}}}}}}
