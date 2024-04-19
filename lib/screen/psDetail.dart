@@ -8,10 +8,29 @@ import '../logic/controller/authController.dart';
 import 'dashboard.dart';
 import 'homePage.dart';
 
-class ProblemStatementDetails extends GetView<DetailsController> {
+class ProblemStatementDetails extends StatefulWidget {
   ProblemStatementDetails({Key? key}) : super(key: key);
 
-  int select = 0;
+  @override
+  State<ProblemStatementDetails> createState() => _ProblemStatementDetailsState();
+}
+
+class _ProblemStatementDetailsState extends State<ProblemStatementDetails> with SingleTickerProviderStateMixin {
+  final controller = Get.find<DetailsController>();
+
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +40,7 @@ class ProblemStatementDetails extends GetView<DetailsController> {
           Container(
             width: double.infinity,
             child: Padding(
-              padding: const EdgeInsets.only(top: 60,bottom: 30,),
+              padding: const EdgeInsets.only(top: 60, bottom: 30),
               child: Column(
                 children: [
                   DynamicText(
@@ -30,23 +49,12 @@ class ProblemStatementDetails extends GetView<DetailsController> {
                   ),
                   Container(
                     decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        TextButton(
-                          onPressed: (){
-
-                          },
-                          child: Text("Description"),
-                        ),
-                        TextButton(
-                          child: Text("Review"),
-                          onPressed: (){},
-                        ),
-                        TextButton(
-                            onPressed: (){},
-                            child: Text("Collaboration")
-                        ),
+                    child: TabBar(
+                      controller: _tabController,
+                      tabs: [
+                        Tab(text: "Description"),
+                        Tab(text: "Review"),
+                        Tab(text: "Collaboration"),
                       ],
                     ),
                   ),
@@ -54,25 +62,47 @@ class ProblemStatementDetails extends GetView<DetailsController> {
               ),
             ),
           ),
-          Description(controller: controller),
-          // Positioned(
-          //   child: GestureDetector(
-          //     onTap: () {
-          //       Get.back();
-          //     },
-          //     child: Padding(
-          //       padding: EdgeInsets.all(3),
-          //       child: Icon(Icons.arrow_back_sharp, color: Colors.white),
-          //     ),
-          //   ),
-          //   left: 100,
-          //   top: 100,
-          // ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                Description(controller: controller),
+                Review(),
+                Collaboration(),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
 }
+
+
+class Review extends StatelessWidget {
+  const Review({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(child: Text("Review"),),
+    );
+  }
+}
+
+
+class Collaboration extends StatelessWidget {
+  const Collaboration({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(child: Text("Review"),),
+    );
+  }
+}
+
+
 
 class Description extends StatelessWidget {
   const Description({
