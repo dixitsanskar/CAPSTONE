@@ -7,46 +7,46 @@ import 'package:get/get.dart';
 class AuthController extends GetxController {
 
   bool isSignedIn = false;
-  FirebaseAuth _auth = FirebaseAuth.instance;
-  late Rx<User?> firebaseUser ;
-
-  @override
-  void onInit() {
-    super.onInit();
-    firebaseUser.bindStream(_auth.authStateChanges());
-  }
-
-  Future<void> signUpWithEmail(String email, String password) async {
-    try {
-      await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-    } catch (e) {
-      Get.snackbar("Error creating account", e.toString(),
-          snackPosition: SnackPosition.BOTTOM);
-    }
-  }
-
-  Future<void> signInWithEmail(String email, String password) async {
-    try {
-      await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-    } catch (e) {
-      Get.snackbar("Error signing in", e.toString(),
-          snackPosition: SnackPosition.BOTTOM);
-    }
-  }
-
-  Future<void> signOut() async {
-    try {
-      await _auth.signOut();
-    } catch (e) {
-      print(e.toString());
-    }
-  }
+  // FirebaseAuth _auth = FirebaseAuth.instance;
+  // late Rx<User?> firebaseUser ;
+  //
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   firebaseUser.bindStream(_auth.authStateChanges());
+  // }
+  //
+  // Future<void> signUpWithEmail(String email, String password) async {
+  //   try {
+  //     await _auth.createUserWithEmailAndPassword(
+  //       email: email,
+  //       password: password,
+  //     );
+  //   } catch (e) {
+  //     Get.snackbar("Error creating account", e.toString(),
+  //         snackPosition: SnackPosition.BOTTOM);
+  //   }
+  // }
+  //
+  // Future<void> signInWithEmail(String email, String password) async {
+  //   try {
+  //     await _auth.signInWithEmailAndPassword(
+  //       email: email,
+  //       password: password,
+  //     );
+  //   } catch (e) {
+  //     Get.snackbar("Error signing in", e.toString(),
+  //         snackPosition: SnackPosition.BOTTOM);
+  //   }
+  // }
+  //
+  // Future<void> signOut() async {
+  //   try {
+  //     await _auth.signOut();
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  // }
 
   // Future<void> updateUserDetails(String displayName, String photoURL) async {
   //   try {
