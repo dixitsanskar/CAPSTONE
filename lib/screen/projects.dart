@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project/collab_tools/kanbanBoard.dart';
 
 class Projects extends StatelessWidget {
   const Projects({Key? key}) : super(key: key);
@@ -7,7 +8,7 @@ class Projects extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("Projects"),
+        child: KanbanBoard()  ,
       ),
     );
   }

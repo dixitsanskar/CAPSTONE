@@ -37,6 +37,24 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text('Capstone'),
           actions: [
+            ElevatedButton(onPressed: (){
+             setState(() {
+               showLoginPopup(context);
+             });
+            }, child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Text('Login')
+            ,)),
+            SizedBox(width: 10,),
+            ElevatedButton(onPressed: (){
+              setState(() {
+                showRegistrationPopup(context);
+              });
+            }, child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Text('Sign Up')
+            ,)),
+
             IconButton(
               icon: CircleAvatar(
                 backgroundColor: Colors.grey.shade200,

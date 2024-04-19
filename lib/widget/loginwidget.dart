@@ -1,8 +1,13 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mini_project/logic/controller/authController.dart';
 import 'package:mini_project/route/route.dart';
 
 class RegistrationPopup extends StatelessWidget {
+
+  var controller = Get.put(AuthController());
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -15,10 +20,18 @@ class RegistrationPopup extends StatelessWidget {
     );
   }
 
-  Widget contentBox(BuildContext context) {
+  Widget contentBox(BuildContext context, ) {
+    TextEditingController name = new TextEditingController();
+    TextEditingController email = new TextEditingController();
+    TextEditingController password = new TextEditingController();
+    TextEditingController userName = new TextEditingController();
+    TextEditingController github_link = new TextEditingController();
+    var controller = Get.put(AuthController());
+
+
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).popAndPushNamed(Routes.mainscreen); // Close the popup when tapped outside
+        Navigator.of(context).pop(); // Close the popup when tapped outside
       },
       child: Dialog(
         shape: RoundedRectangleBorder(
@@ -56,6 +69,7 @@ class RegistrationPopup extends StatelessWidget {
                   ),
                   SizedBox(height: 15),
                   TextFormField(
+                    controller: name,
                     decoration: InputDecoration(
                       labelText: "Name",
                       border: OutlineInputBorder(),
@@ -63,6 +77,7 @@ class RegistrationPopup extends StatelessWidget {
                   ),
                   SizedBox(height: 15),
                   TextFormField(
+                    controller: email,
                     decoration: InputDecoration(
                       labelText: "Email",
                       border: OutlineInputBorder(),
@@ -70,20 +85,23 @@ class RegistrationPopup extends StatelessWidget {
                   ),
                   SizedBox(height: 15),
                   TextFormField(
+                    controller: userName ,
                     decoration: InputDecoration(
-                      labelText: "College Name",
+                      labelText: "User Name",
                       border: OutlineInputBorder(),
                     ),
                   ),
                   SizedBox(height: 15),
                   TextFormField(
+                    controller: github_link ,
                     decoration: InputDecoration(
-                      labelText: "University Roll No",
+                      labelText: "Github link",
                       border: OutlineInputBorder(),
                     ),
                   ),
                   SizedBox(height: 15),
                   TextFormField(
+                    controller:  password ,
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: "Password",
@@ -95,7 +113,10 @@ class RegistrationPopup extends StatelessWidget {
                     alignment: Alignment.bottomRight,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Add registration logic here
+                       controller.signUpWithEmail(email.text.trim(), password.text.trim(), name.text.trim() , userName.text.trim() , github_link.text.trim()  ).then((value) {
+                        Navigator.of(context).pop();
+                        GetSnackBar(title: 'Sign up successfull',);
+                       });
                       },
                       child: Text(
                         "Register",
@@ -112,7 +133,7 @@ class RegistrationPopup extends StatelessWidget {
               child: IconButton(
                 icon: Icon(Icons.close),
                 onPressed: () {
-                  Navigator.of(context).popAndPushNamed(Routes.mainscreen); // Close the popup when close button is pressed
+                  Navigator.of(context).pop; // Close the popup when close button is pressed
                 },
               ),
             ),
@@ -124,6 +145,7 @@ class RegistrationPopup extends StatelessWidget {
 }
 
 class LoginPopup extends StatelessWidget {
+  final controller = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -137,9 +159,14 @@ class LoginPopup extends StatelessWidget {
   }
 
   Widget contentBox(BuildContext context) {
+    TextEditingController email = new TextEditingController();
+    TextEditingController password = new TextEditingController();
+    var controller = Get.put(AuthController());
+
+
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).popAndPushNamed(Routes.mainscreen); // Close the popup when tapped outside
+        Navigator.of(context).pop(); // Close the popup when tapped outside
       },
       child: Dialog(
         shape: RoundedRectangleBorder(
@@ -177,6 +204,7 @@ class LoginPopup extends StatelessWidget {
                   ),
                   SizedBox(height: 15),
                   TextFormField(
+                    controller: email,
                     decoration: InputDecoration(
                       labelText: "Email",
                       border: OutlineInputBorder(),
@@ -184,6 +212,7 @@ class LoginPopup extends StatelessWidget {
                   ),
                   SizedBox(height: 15),
                   TextFormField(
+                    controller: password,
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: "Password",
@@ -209,6 +238,11 @@ class LoginPopup extends StatelessWidget {
                         ElevatedButton(
                           onPressed: () {
                             // Add login logic here
+                            controller.signInWithEmail(email.text.trim(), password.text.trim() ).then((value) {
+                              Navigator.of(context).pop();
+                              GetSnackBar(title: 'Login Successfull',);
+                              
+                            });
                           },
                           child: Text(
                             "Login",
@@ -227,7 +261,7 @@ class LoginPopup extends StatelessWidget {
               child: IconButton(
                 icon: Icon(Icons.close),
                 onPressed: () {
-                  Navigator.of(context).popAndPushNamed(Routes.mainscreen); // Close the popup when close button is pressed
+                  Navigator.of(context).pop(); // Close the popup when close button is pressed
                 },
               ),
             ),
