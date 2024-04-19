@@ -11,6 +11,8 @@ import 'homePage.dart';
 class ProblemStatementDetails extends GetView<DetailsController> {
   ProblemStatementDetails({Key? key}) : super(key: key);
 
+  int select = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +34,9 @@ class ProblemStatementDetails extends GetView<DetailsController> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         TextButton(
-                          onPressed: (){},
+                          onPressed: (){
+
+                          },
                           child: Text("Description"),
                         ),
                         TextButton(
@@ -50,41 +54,7 @@ class ProblemStatementDetails extends GetView<DetailsController> {
               ),
             ),
           ),
-          Flexible(
-            child:   Container(
-              margin: const EdgeInsets.only(top: 10),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
-              ),
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-
-                    // Text(
-                    //   'Problem Statement',
-                    //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    // ),
-                    SizedBox(height: 10),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 50, horizontal: 100),
-                        color: Color(0xFFD9D9D9),
-                        child: Column(
-                          children: [
-                            Text('${controller.prodectData!.problemStatement}'),
-                            SizedBox(height: 50,),
-                            Text('By - ${controller.prodectData!.author}'),
-                          ],
-                        )),
-                    // Add other details as needed
-                  ],
-                ),
-              ),
-            ),
-          ),
+          Description(controller: controller),
           // Positioned(
           //   child: GestureDetector(
           //     onTap: () {
@@ -99,6 +69,54 @@ class ProblemStatementDetails extends GetView<DetailsController> {
           //   top: 100,
           // ),
         ],
+      ),
+    );
+  }
+}
+
+class Description extends StatelessWidget {
+  const Description({
+    super.key,
+    required this.controller,
+  });
+
+  final DetailsController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child:   Container(
+        margin: const EdgeInsets.only(top: 10),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.white,
+        ),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+              // Text(
+              //   'Problem Statement',
+              //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              // ),
+              SizedBox(height: 10),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 50, horizontal: 100),
+                  color: Color(0xFFD9D9D9),
+                  child: Column(
+                    children: [
+                      Text('${controller.prodectData!.problemStatement}'),
+                      SizedBox(height: 50,),
+                      Text('By - ${controller.prodectData!.author}'),
+                    ],
+                  )),
+              // Add other details as needed
+            ],
+          ),
+        ),
       ),
     );
   }
