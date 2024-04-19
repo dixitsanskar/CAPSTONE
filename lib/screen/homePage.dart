@@ -31,82 +31,96 @@ class HomePage extends StatelessWidget {
   Widget _home(){
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-             // margin: EdgeInsets.only(bottom: 10),
-              height: Get.height * 0.3,
-              width: Get.width * 0.6,
-              child: Column(
-                children: [
-                  Text('CAPSTONE', style: TextStyle(
-                    fontSize: 70,
-                    fontWeight: FontWeight.bold
-                  ),),
-                  SizedBox(height: 10,),
-                  Row(mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                  Text('C', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), 
-                  Text('ollaborative ', style: TextStyle( fontSize: 20),), 
-                  Text('A', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), Text('pproach to ', style: TextStyle( fontSize: 20),),
-                  Text('P', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), Text('roblem ', style: TextStyle( fontSize: 20),),
-                  Text('S', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), Text('olving ', style: TextStyle( fontSize: 20),),
-                  Text('T', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), Text('hrough ', style: TextStyle( fontSize: 20),),
-                  Text('O', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), Text('nline ', style: TextStyle( fontSize: 20),),
-                  Text('N', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), Text('etworking ', style: TextStyle( fontSize: 20),),
-                   Text('E', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),), Text('nvironment ', style: TextStyle( fontSize: 20),),
-                  ],)
-
-                  ],)
-                  )
-               ,
-            Container(
-              width: Get.width * 0.7,
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              child: TextFormField(
-                controller: _searchController,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  focusColor: Colors.black,
-                  hintText: 'Search',
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+               // margin: EdgeInsets.only(bottom: 10),
+                height: Get.height * 0.3,
+                width: Get.width * 0.9,
+                child: Column(
+                  children: [
+                    Text('CAPSTONE', style: TextStyle(
+                      fontSize: 70,
+                      fontWeight: FontWeight.bold
+                    ),),
+                    SizedBox(height: 10,),
+                    Flexible(
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          style: TextStyle(color: Colors.black, fontSize: 24),
+                        children: <TextSpan>[
+                      TextSpan(text: 'C', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
+                      TextSpan(text: 'ollaborative ', style: TextStyle( fontSize: 20),),
+                          TextSpan(text: 'A', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
+                          TextSpan(text: 'pproach to ', style: TextStyle( fontSize: 20),),
+                          TextSpan(text: 'P', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
+                          TextSpan(text: 'roblem ', style: TextStyle( fontSize: 20),),
+                          TextSpan(text: 'S', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
+                          TextSpan(text: 'olving ', style: TextStyle( fontSize: 20),),
+                          TextSpan(text: 'T', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
+                          TextSpan(text: 'hrough ', style: TextStyle( fontSize: 20),),
+                          TextSpan(text: 'O', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
+                          TextSpan(text: 'nline ', style: TextStyle( fontSize: 20),),
+                          TextSpan(text: 'N', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
+                          TextSpan(text: 'etworking ', style: TextStyle( fontSize: 20),),
+                          TextSpan(text: 'E', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
+                          TextSpan(text: 'nvironment ', style: TextStyle( fontSize: 20),),
+                      ],)
+                      ),
+                    )
+                  ])
+                    ),
+              SizedBox(height: 20,),
+              Container(
+                width: Get.width * 0.7,
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                child: TextFormField(
+                  controller: _searchController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    focusColor: Colors.black,
+                    hintText: 'Search',
+                    prefixIcon: Icon(Icons.search),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: Get.height * 0.05),
-            GestureDetector( onTap:() {
-             searchController.searchProblemStatement(_searchController.text);
-             controller.onpressed();
-          },
-            child:
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              height: 50,
-              width: Get.width * 0.1,
+              SizedBox(height: Get.height * 0.05),
+              GestureDetector( onTap:() {
+               searchController.searchProblemStatement(_searchController.text);
+               controller.onpressed();
+            },
+              child:
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                height: 50,
+                width: Get.width * 0.2,
 
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(20)
-              ),
-              child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                Icon(Icons.search, color: Colors.white,),
-                Text('Search', style: TextStyle(
-                  color: Colors.white
-                ), )
-              ]),
-            )
-           )
-          ],
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(20)
+                ),
+                child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                  Icon(Icons.search, color: Colors.white,),
+                  Text('Search', style: TextStyle(
+                    color: Colors.white
+                  ), )
+                ]),
+              )
+             )
+            ],
+          ),
         ),
       ),
     );
@@ -118,7 +132,8 @@ class HomePage extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            IconButton(onPressed: (){ controller.onpressed(); }, icon: Icon(Icons.arrow_back_ios, color: Colors.black ,)),
+            IconButton(onPressed: (){ controller.onpressed(); },
+                icon: Icon(Icons.arrow_back_ios, color: Colors.black ,)),
             SizedBox(height: Get.height * 0.05),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -150,7 +165,8 @@ class HomePage extends StatelessWidget {
                 color: Colors.black,
                 borderRadius: BorderRadius.circular(20)
               ),
-              child: Row(children: [
+              child: Row(
+                  children: [
                 Icon(Icons.search, color: Colors.white,),
                 Text('Search', style: TextStyle(
                   color: Colors.white

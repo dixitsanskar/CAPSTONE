@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import 'package:mini_project/logic/controller/authController.dart';
 import 'package:mini_project/screen/about.dart';
 import 'package:mini_project/screen/dashboard.dart';
+import 'package:mini_project/screen/projects.dart';
 import 'package:mini_project/widget/loginwidget.dart';
 
+import 'dashboardMAIN.dart';
 import 'homePage.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -17,12 +19,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
+
   final controller = Get.put(AuthController());
   final List<Widget> _tabs = [
-   HomePage(), 
-   AboutUs(),
-   DashboardPage()
+   HomePage(),
+   Dashboard(),
+    // AboutUs(),
+    Projects(),
   ];
 
   @override
@@ -31,68 +34,66 @@ class _MyHomePageState extends State<MyHomePage> {
      return DefaultTabController(
       length: _tabs.length,
       child: Scaffold(
-        
-        body: Stack(
-          children: [
-            TabBarView(
-              // dragStartBehavior: DragStartBehavior.,
-              children: _tabs,
-            ),
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                margin: const EdgeInsets.only(left: 300, right: 300, top: 10 ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.black
-                ),
-                //color: Colors.black,
-                child: TabBar(
-                  labelColor: Colors.white,
-                  unselectedLabelColor: Colors.white38,
-                  indicatorColor: Colors.white,
-                  onTap: (index) {
-                    if(index ==2 )
-                    {
-                      if(!controller.isSignedIn)
-                      {
-                        setState(() {
-                          showLoginPopup(context);
-                        });
-                       
-
-                      } else
-                        {
-                          setState(() {
-                            _currentIndex = index;
-                          });
-                        }
-                    }
-                    else
-                   { setState(() {
-                      _currentIndex = index;
-                    });}
-                    
-                  },
-                  tabs: [
-                    Tab(
-                    //  icon: Icon(Icons.home),
-                      text: 'Home',
-                    ),
-                    Tab(
-                     // icon: Icon(Icons.info),
-                      text: 'About',
-                    ),
-                    Tab(
-                      text: 'Dashboard',
-                    )
-                  ],
-                ),
+        appBar: AppBar(
+          title: Text('Capstone'),
+          actions: [
+            IconButton(
+              icon: CircleAvatar(
+                backgroundColor: Colors.grey.shade200,
+                child: Icon(Icons.person, color: Colors.black),
               ),
+              onPressed: () {
+                // Define what happens when you press the profile icon
+              },
             ),
           ],
+
+          bottom:
+          TabBar(
+            labelColor: Colors.black,
+            unselectedLabelColor: Colors.black,
+            indicatorColor: Colors.black,
+            onTap: (index) {
+              if(index == 5)
+              {
+                if(!controller.isSignedIn)
+                {
+                  setState(() {
+                    showLoginPopup(context);
+                  });
+
+
+                } else
+                {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                }
+              }
+              else
+              { setState(() {
+                _currentIndex = index;
+              });}
+
+            },
+            tabs: [
+              Tab(
+                //  icon: Icon(Icons.home),
+                text: 'Home',
+              ),
+              Tab(
+                text: 'Dashboard',
+              ),
+              Tab(
+                // icon: Icon(Icons.info),
+                text: 'Projects',
+              ),
+            ],
+          ),
+
+        ),
+        body: TabBarView(
+          children: _tabs,
         )
         ),
     );
