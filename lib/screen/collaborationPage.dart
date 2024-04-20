@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:mini_project/Data/collaborationData.dart';
 import 'package:mini_project/model/user.dart';
+import 'package:mini_project/screen/callPage.dart';
+import 'package:mini_project/screen/constants.dart';
 import 'package:mini_project/screen/threads.dart';
 
 class CollaborationPage extends StatefulWidget {
@@ -21,9 +23,10 @@ class _CollaborationPageState extends State<CollaborationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -33,13 +36,13 @@ class _CollaborationPageState extends State<CollaborationPage> {
                    width: MediaQuery.of(context).size.width * 0.6,
                     // height: 538,
                     decoration: ShapeDecoration(
-                      color: Color(0xFFD9D9D9),
+                      color: NormalColorShade,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                       shadows: [
                         BoxShadow(
-                          color: Color(0x3F000000),
+                          color: darkColorShade,
                           blurRadius: 4,
                           offset: Offset(0, 4),
                           spreadRadius: 0,
@@ -126,13 +129,13 @@ class _CollaborationPageState extends State<CollaborationPage> {
                    width: MediaQuery.of(context).size.width * 0.6,
                     // height: 538,
                     decoration: ShapeDecoration(
-                      color: Color(0xFFD9D9D9),
+                      color: NormalColorShade,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                       shadows: [
                         BoxShadow(
-                          color: Color(0x3F000000),
+                          color: darkColorShade,
                           blurRadius: 4,
                           offset: Offset(0, 4),
                           spreadRadius: 0,
@@ -170,13 +173,13 @@ class _CollaborationPageState extends State<CollaborationPage> {
                                       width: 122,
                                       height: 122,
                                       decoration: ShapeDecoration(
-                                        color: Color(0xFFA0A0A0),
+                                        color: NormalColorShade,
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(10),
                                         ),
                                         shadows: [
                                           BoxShadow(
-                                            color: Color(0x3F000000),
+                                            color: darkColorShade,
                                             blurRadius: 4,
                                             offset: Offset(0, 4),
                                             spreadRadius: 0,
@@ -208,13 +211,13 @@ class _CollaborationPageState extends State<CollaborationPage> {
                                       width: 122,
                                       height: 122,
                                       decoration: ShapeDecoration(
-                                        color: Color(0xFFA0A0A0),
+                                        color: NormalColorShade,
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(10),
                                         ),
                                         shadows: [
                                           BoxShadow(
-                                            color: Color(0x3F000000),
+                                            color: darkColorShade,
                                             blurRadius: 4,
                                             offset: Offset(0, 4),
                                             spreadRadius: 0,
@@ -237,6 +240,7 @@ class _CollaborationPageState extends State<CollaborationPage> {
                                 children: [
                                   GestureDetector(
                                     onTap: (){
+
                                       setState(() {
                                         select = 2;
                                       });
@@ -246,13 +250,13 @@ class _CollaborationPageState extends State<CollaborationPage> {
                                       width: 122,
                                       height: 122,
                                       decoration: ShapeDecoration(
-                                        color: Color(0xFFA0A0A0),
+                                        color: NormalColorShade,
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(10),
                                         ),
                                         shadows: [
                                           BoxShadow(
-                                            color: Color(0x3F000000),
+                                            color: darkColorShade,
                                             blurRadius: 4,
                                             offset: Offset(0, 4),
                                             spreadRadius: 0,
@@ -284,13 +288,13 @@ class _CollaborationPageState extends State<CollaborationPage> {
                                       width: 122,
                                       height: 122,
                                       decoration: ShapeDecoration(
-                                        color: Color(0xFFA0A0A0),
+                                        color: NormalColorShade,
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(10),
                                         ),
                                         shadows: [
                                           BoxShadow(
-                                            color: Color(0x3F000000),
+                                            color: darkColorShade,
                                             blurRadius: 4,
                                             offset: Offset(0, 4),
                                             spreadRadius: 0,
@@ -303,7 +307,7 @@ class _CollaborationPageState extends State<CollaborationPage> {
 
                                   Text("Video Conferenceing",
                                     style: TextStyle(
-                                        fontSize: 13
+                                        fontSize: 13,
                                     ),)
                                 ],
                               ),
@@ -322,13 +326,13 @@ class _CollaborationPageState extends State<CollaborationPage> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.6,
                     decoration: ShapeDecoration(
-                      color: Color(0xFFD9D9D9),
+                      color: NormalColorShade,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                       shadows: [
                         BoxShadow(
-                          color: Color(0x3F000000),
+                          color: darkColorShade,
                           blurRadius: 4,
                           offset: Offset(0, 4),
                           spreadRadius: 0,
@@ -400,6 +404,13 @@ class Tools extends StatelessWidget {
     switch (index) {
       case 0:
         return Threads();
+      case 1:
+        return Text("Task Management");
+      case 2:
+        return Text("Document Editing");
+      case 3:
+        return CallPage();
+
       default:
         return Container(); // Return a default widget if index doesn't match any case
     }

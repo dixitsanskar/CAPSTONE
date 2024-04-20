@@ -25,7 +25,8 @@ class _CallPageState extends State<CallPage> {
       appId: appID,
       channelName: '01',
       tempToken: token,
-      uid: 0,
+      uid: 1
+      ,
     ),
   );
 
@@ -113,7 +114,7 @@ class _CallPageState extends State<CallPage> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: const Text('Agora Video Call'),
+        title: const Text('ConnectHub'),
       ),
       body: Stack(
         children: [

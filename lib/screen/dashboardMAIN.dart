@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mini_project/route/route.dart';
+import 'package:mini_project/screen/constants.dart';
 
 import '../Data/collaborationData.dart';
 
@@ -19,18 +20,11 @@ class Dashboard extends StatelessWidget {
     teamName = 'Herobrine';
 
     return Scaffold(
+      // backgroundColor: NormalColorShade,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Align(
-              alignment: Alignment.center,
-              child: Text("Dashboard",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+
             Wrap(
               alignment: WrapAlignment.start,
               runSpacing: 10,
@@ -73,7 +67,7 @@ class CollaborationCard extends StatelessWidget {
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Color(0xFFD9D9D9),
+            color: NormalColorShade,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

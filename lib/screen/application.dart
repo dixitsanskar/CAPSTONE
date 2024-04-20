@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:mini_project/screen/constants.dart';
 
 import '../model/user.dart';
 import '../route/route.dart';
@@ -11,18 +12,25 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){
+            Get.back();
+          },
+            icon: Icon(Icons.arrow_back,color: Colors.black,)),
+      ),
         body: Center(
           child: Container(
             height: MediaQuery.of(context).size.height * 0.8,
             width: MediaQuery.of(context).size.width * 0.7,
             decoration: ShapeDecoration(
-              color: Color(0xFFD9D9D9),
+              color: NormalColorShade,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
               shadows: [
                 BoxShadow(
-                  color: Color(0x3F000000),
+                  color: darkColorShade,
                   blurRadius: 4,
                   offset: Offset(0, 4),
                   spreadRadius: 0,
