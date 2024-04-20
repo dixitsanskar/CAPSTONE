@@ -5,11 +5,35 @@ import 'package:mini_project/widget/dynamicTexts.dart';
 
 import '../logic/controller/StatementDetails.dart';
 import '../logic/controller/authController.dart';
+import '../route/route.dart';
 import 'dashboard.dart';
 import 'homePage.dart';
 
-class ProblemStatementDetails extends GetView<DetailsController> {
+class ProblemStatementDetails extends StatefulWidget {
   ProblemStatementDetails({Key? key}) : super(key: key);
+
+  @override
+  State<ProblemStatementDetails> createState() =>
+      _ProblemStatementDetailsState();
+}
+
+class _ProblemStatementDetailsState extends State<ProblemStatementDetails>
+    with SingleTickerProviderStateMixin {
+  final controller = Get.find<DetailsController>();
+
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +43,7 @@ class ProblemStatementDetails extends GetView<DetailsController> {
           Container(
             width: double.infinity,
             child: Padding(
-              padding: const EdgeInsets.only(top: 60,bottom: 30,),
+              padding: const EdgeInsets.only(top: 20, bottom: 30),
               child: Column(
                 children: [
                   DynamicText(
@@ -28,21 +52,12 @@ class ProblemStatementDetails extends GetView<DetailsController> {
                   ),
                   Container(
                     decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        TextButton(
-                          onPressed: (){},
-                          child: Text("Description"),
-                        ),
-                        TextButton(
-                          child: Text("Review"),
-                          onPressed: (){},
-                        ),
-                        TextButton(
-                            onPressed: (){},
-                            child: Text("Collaboration")
-                        ),
+                    child: TabBar(
+                      controller: _tabController,
+                      tabs: [
+                        Tab(text: "Description"),
+                        Tab(text: "Review"),
+                        Tab(text: "Collaboration"),
                       ],
                     ),
                   ),
@@ -50,55 +65,332 @@ class ProblemStatementDetails extends GetView<DetailsController> {
               ),
             ),
           ),
-          Flexible(
-            child:   Container(
-              margin: const EdgeInsets.only(top: 10),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
-              ),
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-
-                    // Text(
-                    //   'Problem Statement',
-                    //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    // ),
-                    SizedBox(height: 10),
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 50, horizontal: 100),
-                        color: Color(0xFFD9D9D9),
-                        child: Column(
-                          children: [
-                            Text('${controller.prodectData!.problemStatement}'),
-                            SizedBox(height: 50,),
-                            Text('By - ${controller.prodectData!.author}'),
-                          ],
-                        )),
-                    // Add other details as needed
-                  ],
-                ),
-              ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                Description(controller: controller),
+                Review(),
+                Collaboration(),
+              ],
             ),
           ),
-          // Positioned(
-          //   child: GestureDetector(
-          //     onTap: () {
-          //       Get.back();
-          //     },
-          //     child: Padding(
-          //       padding: EdgeInsets.all(3),
-          //       child: Icon(Icons.arrow_back_sharp, color: Colors.white),
-          //     ),
-          //   ),
-          //   left: 100,
-          //   top: 100,
-          // ),
         ],
+      ),
+    );
+  }
+}
+
+class Review extends StatelessWidget {
+  const Review({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text("Review"),
+      ),
+    );
+  }
+}
+
+class Collaboration extends StatelessWidget {
+  const Collaboration({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      Scaffold(
+        body: Center(
+          child: SingleChildScrollView(
+            child: Container(
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  decoration: ShapeDecoration(
+            color: Color(0xFFD9D9D9),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            shadows: [
+              BoxShadow(
+                color: Color(0x3F000000),
+                blurRadius: 4,
+                offset: Offset(0, 4),
+                spreadRadius: 0,
+              )
+            ],
+                  ),
+
+              child: Column(
+                children: [
+                  Text(
+                    'Submitting your application will share the following with the XYZ organizers',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 36,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w400,
+                      height: 0,
+                    ),
+                  ),
+
+                  Container(
+                    width: double.infinity,
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          width: 1,
+                          strokeAlign: BorderSide.strokeAlignCenter,
+                        ),
+                      ),
+                    ),
+                  ),
+
+
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.all(10),
+                        width: 55,
+                        height: 55,
+                        decoration: ShapeDecoration(
+                          color: Colors.white,
+                          shape: OvalBorder(),
+                        ),
+                        child: Icon(Icons.person),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'About',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 28,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+
+                          Text(
+                            'Your username, first name, and last name',
+                            style: TextStyle(
+                              color: Color(0xFF868686),
+                              fontSize: 20,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.all(10),
+                        width: 55,
+                        height: 55,
+                        decoration: ShapeDecoration(
+                          color: Colors.white,
+                          shape: OvalBorder(),
+                        ),
+                        child: Icon(Icons.email),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Email',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 28,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+
+                          Text(
+                            'Your registered email',
+                            style: TextStyle(
+                              color: Color(0xFF868686),
+                              fontSize: 20,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.all(10),
+                        width: 55,
+                        height: 55,
+                        decoration: ShapeDecoration(
+                          color: Colors.white,
+                          shape: OvalBorder(),
+                        ),
+                        child: Icon(Icons.phone),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Phone',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 28,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+
+                          Text(
+                            'Your Phone Number',
+                            style: TextStyle(
+                              color: Color(0xFF868686),
+                              fontSize: 20,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.all(10),
+                        width: 55,
+                        height: 55,
+                        decoration: ShapeDecoration(
+                          color: Colors.white,
+                          shape: OvalBorder(),
+                        ),
+                        child: Icon(Icons.link),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Links',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 28,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+
+                          Text(
+                            'Various links you have provides',
+                            style: TextStyle(
+                              color: Color(0xFF868686),
+                              fontSize: 20,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              height: 0,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                              if (states.contains(MaterialState.disabled)) {
+                                // return the color when the button is disabled
+                                return Colors.grey; // For example, return grey color
+                              }
+                              // return the color when the button is enabled
+                              return Color(0xFFD9D9D9);
+                            }),
+                          ),
+                            onPressed: (){
+                            Get.toNamed(Routes.application);
+                            },
+                            child: Text(
+                          "Continue to Application"
+                        )),
+                      )
+                    ],
+                  )
+
+                ],
+              ),
+
+                ),
+          ),
+        ));
+  }
+}
+
+class Description extends StatelessWidget {
+  const Description({
+    super.key,
+    required this.controller,
+  });
+
+  final DetailsController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: Container(
+        margin: const EdgeInsets.only(top: 10),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.white,
+        ),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Text(
+              //   'Problem Statement',
+              //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              // ),
+              SizedBox(height: 10),
+              Container(
+                  padding: EdgeInsets.symmetric(vertical: 50, horizontal: 100),
+                  color: Color(0xFFD9D9D9),
+                  child: Column(
+                    children: [
+                      Text('${controller.prodectData!.problemStatement}'),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Text('By - ${controller.prodectData!.author}'),
+                    ],
+                  )),
+              // Add other details as needed
+            ],
+          ),
+        ),
       ),
     );
   }
