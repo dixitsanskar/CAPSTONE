@@ -141,7 +141,7 @@ class MessageBubble extends StatelessWidget {
               bottomRight: Radius.circular(12),
               topRight: Radius.circular(12),
             ),
-            color: isMe ? Colors.white : Color(0xffCDC6F2),
+            color: isMe ? Colors.grey[300] : Color(0xffCDC6F2),
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: Column(
@@ -158,13 +158,7 @@ class MessageBubble extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
-                        "18:12",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: isMe ? Colors.black : Colors.black,
-                        ),
-                      ),
+
                       Icon(Icons.done, size: 14, color: isMe ? Colors.black : Colors.black),
                     ],
                   ),

@@ -24,7 +24,11 @@ class _CollaborationPageState extends State<CollaborationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('Capstone',style: TextStyle(color: Colors.white),),
+        backgroundColor: darkColorShade,
+        leading: IconButton(icon: Icon(Icons.arrow_back_outlined,color: Colors.white,),onPressed: (){Get.back();},),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -410,7 +414,10 @@ class Tools extends StatelessWidget {
         return Container();
       case 2:
         return Container(
-          child: Center(child: Text("Future Implementation"),),
+          child: Center(
+            child:
+            Text(
+                "Future Implementation",),),
         ); // Add return statement for case 2
       case 3:
         return CallPage();
