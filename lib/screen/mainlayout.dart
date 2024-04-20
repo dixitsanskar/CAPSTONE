@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
    HomePage(),
    Dashboard(),
     // AboutUs(),
-    Projects(),
+    // Projects(),
   ];
 
   @override
@@ -102,9 +102,9 @@ class _MyHomePageState extends State<MyHomePage> {
               Tab(
                 text: 'Dashboard',
               ),
-              Tab(
-                text: 'Projects',
-              ),
+              // Tab(
+              //   text: 'Projects',
+              // ),
             ],
           ),
 
