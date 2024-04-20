@@ -1,5 +1,7 @@
+
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kanban_board/custom/board.dart';
 import 'package:kanban_board/models/inputs.dart';
@@ -18,8 +20,30 @@ class BoardBuilder extends StatefulWidget {
 }
 
 class _BoardBuilderState extends State<BoardBuilder> {
-  get width =>
-      Platform.isWindows || Platform.isLinux || Platform.isMacOS ? 350 : 250;
+  
+ double width =350;
+
+
+  @override
+  void initState()
+  {
+    super.initState();
+    if (kIsWeb) {
+// do the web thing
+setState(() {
+  width =350;
+});
+
+} else {
+  if (Platform.isAndroid || Platform.isIOS) {
+    // do the android thing
+    width = 250;
+
+  
+  }
+  
+}
+  }
 
   @override
   Widget build(BuildContext context) {

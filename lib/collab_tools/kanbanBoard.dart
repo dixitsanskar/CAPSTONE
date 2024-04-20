@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../logic/controller/task_control.dart';
-import '../model/task.dart';
+class Task {
+  String title;
+  String category;
+  int priority;
 
-class KanbanBoard extends StatelessWidget {
+  Task(this.title, this.category, this.priority);
+}
+
+class KanbanBoard extends StatefulWidget {
+  @override
+  _KanbanBoardState createState() => _KanbanBoardState();
+}
+
+class _KanbanBoardState extends State<KanbanBoard> {
+  List<Task> tasks = [
+    Task('Task 1', 'To Do', 1),
+    Task('Task 2', 'In Progress', 2),
+    Task('Task 3', 'Done', 3),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,141 +27,170 @@ class KanbanBoard extends StatelessWidget {
         title: Text('Kanban Board'),
       ),
       body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Column(
-            children: [
-              ColumnTitle(title: 'To Do'),
-              TaskColumn(status: 'To Do'),
-            ],
-          ),
-          Column(
-            children: [
-              ColumnTitle(title: 'In Progress'),
-              TaskColumn(status: 'In Progress'),
-            ],
-          ),
-          Column(
-            children: [
-              ColumnTitle(title: 'Done'),
-              TaskColumn(status: 'Done'),
-            ],
-          ),
+          _buildColumn('To Do'),
+          _buildColumn('In Progress'),
+          _buildColumn('Done'),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Open a dialog to create a new task
-          showDialog(
-            context: context,
-            builder: (context) => NewTaskDialog(),
-          );
-        },
-        child: Icon(Icons.add),
-      ),
     );
   }
-}
 
-class ColumnTitle extends StatelessWidget {
-  final String title;
-
-  const ColumnTitle({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-    );
-  }
-}
-
-class TaskColumn extends StatelessWidget {
-  final String status;
-
-  const TaskColumn({required this.status});
-
-  @override
-  Widget build(BuildContext context) {
-    final tasks = Provider.of<TaskProvider>(context).tasks.where((task) => task.status == status).toList();
+  Widget _buildColumn(String category) {
+    List<Task> tasksInCategory =
+        tasks.where((task) => task.category == category).toList();
 
     return Expanded(
-      child: ListView.builder(
-        itemCount: tasks.length,
-        itemBuilder: (context, index) {
-          return Draggable(
-            child: TaskCard(task: tasks[index]),
-            feedback: TaskCard(task: tasks[index], isDragging: true),
-            childWhenDragging: SizedBox(),
-            data: tasks[index].id,
-          );
-        },
-      ),
-    );
-  }
-}
-
-class TaskCard extends StatelessWidget {
-  final Task task;
-  final bool isDragging;
-
-  const TaskCard({required this.task, this.isDragging = false});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: isDragging ? 0 : 4,
-      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      child: ListTile(
-        title: Text(task.title),
-        subtitle: Text(task.description),
-        onLongPress: () {
-          // Delete task on long press
-          Provider.of<TaskProvider>(context, listen: false).deleteTask(task.id);
-        },
-      ),
-    );
-  }
-}
-
-class NewTaskDialog extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final TextEditingController titleController = TextEditingController();
-    final TextEditingController descriptionController = TextEditingController();
-
-    return AlertDialog(
-      title: Text('New Task'),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextField(
-            controller: titleController,
-            decoration: InputDecoration(labelText: 'Title'),
-          ),
-          TextField(
-            controller: descriptionController,
-            decoration: InputDecoration(labelText: 'Description'),
-          ),
-        ],
-      ),
-      actions: [
-        TextButton(
-          onPressed: () {
-            // Create new task and add it to the list
-            final taskProvider = Provider.of<TaskProvider>(context, listen: false);
-            taskProvider.addTask(Task(
-              id: DateTime.now().toString(),
-              title: titleController.text,
-              description: descriptionController.text,
-              status: 'To Do',
-            ));
-            Navigator.pop(context);
-          },
-          child: Text('Create'),
+      child: Card(
+        margin: EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                category,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0,
+                ),
+              ),
+            ),
+            Expanded(
+              child: DragTarget<Task>(
+                onAccept: (task) {
+                  setState(() {
+                    task.category = category;
+                  });
+                },
+                builder: (context, candidateData, rejectedData) {
+                  return ListView.builder(
+                    itemCount: tasksInCategory.length,
+                    itemBuilder: (context, index) {
+                      final task = tasksInCategory[index];
+                      return Draggable<Task>(
+                        data: task,
+                        child: _buildTaskItem(task.title, task.priority),
+                        feedback: Material(
+                          elevation: 8.0,
+                          child: Container(
+                            padding: EdgeInsets.all(16.0),
+                            child: Text(task.title),
+                          ),
+                        ),
+                        childWhenDragging: _buildTaskItem(task.title, task.priority),
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+            if (category == 'To Do') ...[
+              SizedBox(height: 8.0),
+              ElevatedButton(
+                onPressed: () {
+                  _addTask(category);
+                },
+                child: Text('Add Task'),
+              ),
+            ],
+          ],
         ),
-      ],
+      ),
+    );
+  }
+
+  Widget _buildTaskItem(String title, int priority) {
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+      color: getColorForPriority(priority),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  Color? getColorForPriority(int priority) {
+    switch (priority) {
+      case 1:
+        return Colors.green[100];
+      case 2:
+        return Colors.yellow[100];
+      case 3:
+        return Colors.red[100];
+      default:
+        return Colors.grey[200];
+    }
+  }
+
+  void _addTask(String category) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        String newTaskTitle = '';
+        int newTaskPriority = 1; // Default priority is 1
+
+        return AlertDialog(
+          title: Text('Add Task'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                onChanged: (value) {
+                  newTaskTitle = value;
+                },
+                decoration: InputDecoration(labelText: 'Task Title'),
+              ),
+              SizedBox(height: 16.0),
+              DropdownButtonFormField<int>(
+                value: newTaskPriority,
+                onChanged: (value) {
+                  setState(() {
+                    newTaskPriority = value!;
+                  });
+                },
+                items: [
+                  DropdownMenuItem<int>(
+                    value: 1,
+                    child: Text('Low Priority'),
+                  ),
+                  DropdownMenuItem<int>(
+                    value: 2,
+                    child: Text('Medium Priority'),
+                  ),
+                  DropdownMenuItem<int>(
+                    value: 3,
+                    child: Text('High Priority'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (newTaskTitle.isNotEmpty) {
+                  setState(() {
+                    tasks.add(Task(newTaskTitle, category, newTaskPriority));
+                  });
+                  Navigator.of(context).pop();
+                }
+              },
+              child: Text('Add'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
