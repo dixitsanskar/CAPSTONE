@@ -11,7 +11,7 @@ class KanbanBoard extends StatefulWidget {
 
 class _KanbanBoardState extends State<KanbanBoard> {
 
-  final AppFlowyBoardController controller = AppFlowyBoardController()
+  // final AppFlowyBoardController controller = AppFlowyBoardController()
 
   @override
   void initState(){
