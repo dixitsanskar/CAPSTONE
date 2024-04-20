@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mini_project/screen/constants.dart';
 import 'package:mini_project/screen/projects.dart';
 import 'package:mini_project/widget/dynamicTexts.dart';
 
@@ -38,6 +39,10 @@ class _ProblemStatementDetailsState extends State<ProblemStatementDetails>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: DynamicText(
+        text: '${controller.prodectData!.title}',
+        style: TextStyle(color: darkColorShade, fontSize: 30,),
+      ),),
       body: Column(
         children: [
           Container(
@@ -46,16 +51,15 @@ class _ProblemStatementDetailsState extends State<ProblemStatementDetails>
               padding: const EdgeInsets.only(top: 20, bottom: 30),
               child: Column(
                 children: [
-                  DynamicText(
-                    text: '${controller.prodectData!.title}',
-                    style: TextStyle(color: Colors.black, fontSize: 30),
-                  ),
                   Container(
-                    decoration: BoxDecoration(color: Color(0xFFD9D9D9)),
+                    decoration: BoxDecoration(color: darkColorShade),
                     child: TabBar(
+                      labelColor: Colors.white,
+                      unselectedLabelColor: Colors.white,
+                      indicatorColor: Colors.white,
                       controller: _tabController,
                       tabs: [
-                        Tab(text: "Description"),
+                        Tab(text: "Description",),
                         Tab(text: "Review"),
                         Tab(text: "Collaboration"),
                       ],
@@ -107,13 +111,13 @@ class Collaboration extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.8,
                   width: MediaQuery.of(context).size.width * 0.7,
                   decoration: ShapeDecoration(
-            color: Color(0xFFD9D9D9),
+            color: NormalColorShade,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
             shadows: [
               BoxShadow(
-                color: Color(0x3F000000),
+                color: darkColorShade,
                 blurRadius: 4,
                 offset: Offset(0, 4),
                 spreadRadius: 0,
@@ -128,7 +132,7 @@ class Collaboration extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 36,
+                      fontSize: 30,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w400,
                       height: 0,
@@ -167,7 +171,7 @@ class Collaboration extends StatelessWidget {
                             'About',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 28,
+                              fontSize: 22,
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               height: 0,
@@ -178,7 +182,7 @@ class Collaboration extends StatelessWidget {
                             'Your username, first name, and last name',
                             style: TextStyle(
                               color: Color(0xFF868686),
-                              fontSize: 20,
+                              fontSize: 16,
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               height: 0,
@@ -208,7 +212,7 @@ class Collaboration extends StatelessWidget {
                             'Email',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 28,
+                              fontSize: 22,
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               height: 0,
@@ -219,7 +223,7 @@ class Collaboration extends StatelessWidget {
                             'Your registered email',
                             style: TextStyle(
                               color: Color(0xFF868686),
-                              fontSize: 20,
+                              fontSize: 16,
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               height: 0,
@@ -249,7 +253,7 @@ class Collaboration extends StatelessWidget {
                             'Phone',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 28,
+                              fontSize: 22,
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               height: 0,
@@ -260,7 +264,7 @@ class Collaboration extends StatelessWidget {
                             'Your Phone Number',
                             style: TextStyle(
                               color: Color(0xFF868686),
-                              fontSize: 20,
+                              fontSize: 16,
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               height: 0,
@@ -290,7 +294,7 @@ class Collaboration extends StatelessWidget {
                             'Links',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 28,
+                              fontSize: 22,
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               height: 0,
@@ -301,7 +305,7 @@ class Collaboration extends StatelessWidget {
                             'Various links you have provides',
                             style: TextStyle(
                               color: Color(0xFF868686),
-                              fontSize: 20,
+                              fontSize: 16,
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               height: 0,
@@ -377,7 +381,7 @@ class Description extends StatelessWidget {
               SizedBox(height: 10),
               Container(
                   padding: EdgeInsets.symmetric(vertical: 50, horizontal: 100),
-                  color: Color(0xFFD9D9D9),
+                  color: NormalColorShade,
                   child: Column(
                     children: [
                       Text('${controller.prodectData!.problemStatement}'),
