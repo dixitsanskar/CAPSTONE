@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mini_project/collab_tools/board_builder.dart';
 import 'package:mini_project/collab_tools/kanbanBoard.dart';
 import 'package:mini_project/logic/controller/SearchController.dart';
 import 'package:mini_project/screen/callPage.dart';
