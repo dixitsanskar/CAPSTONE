@@ -1,3 +1,4 @@
+import 'package:agora_uikit/agora_uikit.dart';
 import 'package:flutter/material.dart';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:agora_rtc_engine/agora_rtc_engine_web.dart';
@@ -16,18 +17,33 @@ class CallPage extends StatefulWidget {
 class _CallPageState extends State<CallPage> {
   
  String? channelName;
-  int? _remoteUid;
+  int? _remoteUid = 1;
   bool _localUserJoined = false;
   late RtcEngine _engine;
+  final AgoraClient client = AgoraClient(
+    agoraConnectionData: AgoraConnectionData(
+      appId: appID,
+      channelName: '01',
+      tempToken: token,
+      uid: 0,
+    ),
+  );
 
    Future<void> initAgora() async {
     // retrieve permissions
     await [Permission.microphone, Permission.camera].request();
 
     //create the engine
+    
+
+  void initAgora() async {
+    await client.initialize();
+  }
+
     _engine = createAgoraRtcEngine();
     await _engine.initialize(const RtcEngineContext(
       appId: appID,
+
       channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
     ));
 
@@ -101,26 +117,34 @@ class _CallPageState extends State<CallPage> {
       ),
       body: Stack(
         children: [
-          Center(
-            child: _remoteVideo(channelName),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: SizedBox(
-              width: 100,
-              height: 150,
-              child: Center(
-                child: _localUserJoined
-                    ? AgoraVideoView(
-                  controller: VideoViewController(
-                    rtcEngine: _engine,
-                    canvas: const VideoCanvas(uid: 0),
-                  ),
-                )
-                    : const CircularProgressIndicator(),
+          AgoraVideoViewer(
+                client: client,
+                layoutType: Layout.floating,
+                enableHostControls: true, // Add this to enable host controls
               ),
-            ),
-          ),
+              AgoraVideoButtons(
+                client: client,
+              ),
+          // Center(
+          //   child: _remoteVideo(channelName),
+          // ),
+          // Align(
+          //   alignment: Alignment.topLeft,
+          //   child: SizedBox(
+          //     width: 100,
+          //     height: 150,
+          //     child: Center(
+          //       child: _localUserJoined
+          //           ? AgoraVideoView(
+          //         controller: VideoViewController(
+          //           rtcEngine: _engine,
+          //           canvas: const VideoCanvas(uid: 0),
+          //         ),
+          //       )
+          //           : const CircularProgressIndicator(),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
@@ -132,7 +156,7 @@ class _CallPageState extends State<CallPage> {
         controller: VideoViewController.remote(
           rtcEngine: _engine,
           canvas: VideoCanvas(uid: _remoteUid),
-          connection: const RtcConnection(channelId: 'o1'),
+          connection: const RtcConnection(channelId: '01'),
         ),
       );
     } else {
