@@ -16,7 +16,7 @@ class CallPage extends StatefulWidget {
 class _CallPageState extends State<CallPage> {
   
  String? channelName;
-  int? _remoteUid;
+  int? _remoteUid=2;
   bool _localUserJoined = false;
   late RtcEngine _engine;
 
@@ -132,7 +132,7 @@ class _CallPageState extends State<CallPage> {
         controller: VideoViewController.remote(
           rtcEngine: _engine,
           canvas: VideoCanvas(uid: _remoteUid),
-          connection: const RtcConnection(channelId: 'o1'),
+          connection: const RtcConnection(channelId: '01'),
         ),
       );
     } else {
