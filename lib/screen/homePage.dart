@@ -102,9 +102,9 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: Get.height * 0.05),
               GestureDetector( onTap:() {
-              //  searchController.searchProblemStatement(_searchController.text);
-              //  controller.onpressed();
-              Get.to(KanbanBoard());
+               searchController.searchProblemStatement(_searchController.text);
+               controller.onpressed();
+              // Get.to(KanbanBoard());
             },
               child:
               Container(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:mini_project/Data/collaborationData.dart';
+import 'package:mini_project/collab_tools/kanbanBoard.dart';
 import 'package:mini_project/model/user.dart';
 import 'package:mini_project/screen/callPage.dart';
 import 'package:mini_project/screen/constants.dart';
@@ -203,7 +204,8 @@ class _CollaborationPageState extends State<CollaborationPage> {
                                   GestureDetector(
                                     onTap: (){
                                       setState(() {
-                                        select = 1;
+                                        select = 0;
+                                        Get.to(KanbanBoard());
                                       });
                                     },
                                     child: Container(
@@ -405,17 +407,15 @@ class Tools extends StatelessWidget {
       case 0:
         return Threads();
       case 1:
-        return Text("Task Management");
+        return Container();
       case 2:
-        return Text("Document Editing");
+        return Container(
+          child: Center(child: Text("Future Implementation"),),
+        ); // Add return statement for case 2
       case 3:
         return CallPage();
-
       default:
         return Container(); // Return a default widget if index doesn't match any case
     }
   }
 }
-
-
-
