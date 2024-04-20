@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:agora_uikit/agora_uikit.dart';
 import 'package:flutter/material.dart';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
@@ -20,67 +22,70 @@ class _CallPageState extends State<CallPage> {
   int? _remoteUid = 1;
   bool _localUserJoined = false;
   late RtcEngine _engine;
-  final AgoraClient client = AgoraClient(
+   final AgoraClient client = AgoraClient(
     agoraConnectionData: AgoraConnectionData(
       appId: appID,
       channelName: '01',
-      tempToken: token,
+      tempToken: tokens,
       uid: 0,
     ),
   );
 
-   Future<void> initAgora() async {
-    // retrieve permissions
-    await [Permission.microphone, Permission.camera].request();
-
-    //create the engine
-    
-
-  void initAgora() async {
+    void initAgora() async {
+       await window.navigator.getUserMedia(audio: true, video: true) ;
     await client.initialize();
   }
 
-    _engine = createAgoraRtcEngine();
-    await _engine.initialize(const RtcEngineContext(
-      appId: appID,
+  //  Future<void> initAgora() async {
+  //   // retrieve permissions
+   
 
-      channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
-    ));
+  //   //create the engine
+   
 
-    _engine.registerEventHandler(
-      RtcEngineEventHandler(
-        onJoinChannelSuccess: (RtcConnection connection, int elapsed) {
-          debugPrint("local user ${connection.localUid} joined");
-          setState(() {
-            _localUserJoined = true;
-          });
-        },
-        onUserJoined: (RtcConnection connection, int remoteUid, int elapsed) {
-          debugPrint("remote user $remoteUid joined");
-          setState(() {
-            _remoteUid = remoteUid;
-          });
-        },
-        onUserOffline: (RtcConnection connection, int remoteUid,
-            UserOfflineReasonType reason) {
-          debugPrint("remote user $remoteUid left channel");
-          setState(() {
-            _remoteUid = null;
-          });
-        },
-        onTokenPrivilegeWillExpire: (RtcConnection connection, String token) {
-          debugPrint(
-              '[onTokenPrivilegeWillExpire] connection: ${connection.toJson()}, token: $token');
-        },
-      ),
-    );
 
-    await _engine.setClientRole(role: ClientRoleType.clientRoleBroadcaster);
-    await _engine.enableVideo();
-    await _engine.startPreview();
 
-    //await _engine.joinChannel(token: token, channelId: channel, options: null, uid: 0,);
-  }
+  //   _engine = createAgoraRtcEngine();
+  //   await _engine.initialize(const RtcEngineContext(
+  //     appId: appID,
+
+  //     channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
+  //   ));
+
+  //   _engine.registerEventHandler(
+  //     RtcEngineEventHandler(
+  //       onJoinChannelSuccess: (RtcConnection connection, int elapsed) {
+  //         debugPrint("local user ${connection.localUid} joined");
+  //         setState(() {
+  //           _localUserJoined = true;
+  //         });
+  //       },
+  //       onUserJoined: (RtcConnection connection, int remoteUid, int elapsed) {
+  //         debugPrint("remote user $remoteUid joined");
+  //         setState(() {
+  //           _remoteUid = remoteUid;
+  //         });
+  //       },
+  //       onUserOffline: (RtcConnection connection, int remoteUid,
+  //           UserOfflineReasonType reason) {
+  //         debugPrint("remote user $remoteUid left channel");
+  //         setState(() {
+  //           _remoteUid = null;
+  //         });
+  //       },
+  //       onTokenPrivilegeWillExpire: (RtcConnection connection, String token) {
+  //         debugPrint(
+  //             '[onTokenPrivilegeWillExpire] connection: ${connection.toJson()}, token: $token');
+  //       },
+  //     ),
+  //   );
+
+  //   await _engine.setClientRole(role: ClientRoleType.clientRoleBroadcaster);
+  //   await _engine.enableVideo();
+  //   await _engine.startPreview();
+
+  //   //await _engine.joinChannel(token: token, channelId: channel, options: null, uid: 0,);
+  // }
 
 
   @override
