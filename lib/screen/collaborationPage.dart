@@ -4,11 +4,19 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:mini_project/Data/collaborationData.dart';
 import 'package:mini_project/model/user.dart';
+import 'package:mini_project/screen/threads.dart';
 
-class CollaborationPage extends StatelessWidget {
+class CollaborationPage extends StatefulWidget {
   CollaborationPage({Key? key,}) : super(key: key);
 
+  @override
+  State<CollaborationPage> createState() => _CollaborationPageState();
+}
+
+class _CollaborationPageState extends State<CollaborationPage> {
   final teamDetails = Get.arguments as Map<String, dynamic>;
+
+  int select = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -151,25 +159,32 @@ class CollaborationPage extends StatelessWidget {
                             children: [
                               Column(
                                 children: [
-                                  Container(
-                                    margin: EdgeInsets.all(10),
-                                    width: 122,
-                                    height: 122,
-                                    decoration: ShapeDecoration(
-                                      color: Color(0xFFA0A0A0),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
+                                  GestureDetector(
+                                    onTap: (){
+                                      setState(() {
+                                        select = 0;
+                                      });
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.all(10),
+                                      width: 122,
+                                      height: 122,
+                                      decoration: ShapeDecoration(
+                                        color: Color(0xFFA0A0A0),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        shadows: [
+                                          BoxShadow(
+                                            color: Color(0x3F000000),
+                                            blurRadius: 4,
+                                            offset: Offset(0, 4),
+                                            spreadRadius: 0,
+                                          )
+                                        ],
                                       ),
-                                      shadows: [
-                                        BoxShadow(
-                                          color: Color(0x3F000000),
-                                          blurRadius: 4,
-                                          offset: Offset(0, 4),
-                                          spreadRadius: 0,
-                                        )
-                                      ],
+                                      child: Icon(Icons.chat,size: 50,),
                                     ),
-                                    child: Icon(Icons.chat,size: 50,),
                                   ),
 
                                   Text("Threads",
@@ -182,25 +197,32 @@ class CollaborationPage extends StatelessWidget {
 
                               Column(
                                 children: [
-                                  Container(
-                                    margin: EdgeInsets.all(10),
-                                    width: 122,
-                                    height: 122,
-                                    decoration: ShapeDecoration(
-                                      color: Color(0xFFA0A0A0),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
+                                  GestureDetector(
+                                    onTap: (){
+                                      setState(() {
+                                        select = 1;
+                                      });
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.all(10),
+                                      width: 122,
+                                      height: 122,
+                                      decoration: ShapeDecoration(
+                                        color: Color(0xFFA0A0A0),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        shadows: [
+                                          BoxShadow(
+                                            color: Color(0x3F000000),
+                                            blurRadius: 4,
+                                            offset: Offset(0, 4),
+                                            spreadRadius: 0,
+                                          )
+                                        ],
                                       ),
-                                      shadows: [
-                                        BoxShadow(
-                                          color: Color(0x3F000000),
-                                          blurRadius: 4,
-                                          offset: Offset(0, 4),
-                                          spreadRadius: 0,
-                                        )
-                                      ],
+                                      child: Icon(Icons.task_outlined,size: 50,),
                                     ),
-                                    child: Icon(Icons.task_outlined,size: 50,),
                                   ),
 
                                   Text("Task Management",
@@ -213,25 +235,32 @@ class CollaborationPage extends StatelessWidget {
 
                               Column(
                                 children: [
-                                  Container(
-                                    margin: EdgeInsets.all(10),
-                                    width: 122,
-                                    height: 122,
-                                    decoration: ShapeDecoration(
-                                      color: Color(0xFFA0A0A0),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
+                                  GestureDetector(
+                                    onTap: (){
+                                      setState(() {
+                                        select = 2;
+                                      });
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.all(10),
+                                      width: 122,
+                                      height: 122,
+                                      decoration: ShapeDecoration(
+                                        color: Color(0xFFA0A0A0),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        shadows: [
+                                          BoxShadow(
+                                            color: Color(0x3F000000),
+                                            blurRadius: 4,
+                                            offset: Offset(0, 4),
+                                            spreadRadius: 0,
+                                          )
+                                        ],
                                       ),
-                                      shadows: [
-                                        BoxShadow(
-                                          color: Color(0x3F000000),
-                                          blurRadius: 4,
-                                          offset: Offset(0, 4),
-                                          spreadRadius: 0,
-                                        )
-                                      ],
+                                      child: Icon(Icons.document_scanner_outlined,size: 50,),
                                     ),
-                                    child: Icon(Icons.document_scanner_outlined,size: 50,),
                                   ),
 
                                   Text("Document Editing",
@@ -244,40 +273,44 @@ class CollaborationPage extends StatelessWidget {
 
                               Column(
                                 children: [
-                                  Container(
-                                    margin: EdgeInsets.all(10),
-                                    width: 122,
-                                    height: 122,
-                                    decoration: ShapeDecoration(
-                                      color: Color(0xFFA0A0A0),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
+                                  GestureDetector(
+                                    onTap: (){
+                                      setState(() {
+                                        select = 3;
+                                      });
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.all(10),
+                                      width: 122,
+                                      height: 122,
+                                      decoration: ShapeDecoration(
+                                        color: Color(0xFFA0A0A0),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        shadows: [
+                                          BoxShadow(
+                                            color: Color(0x3F000000),
+                                            blurRadius: 4,
+                                            offset: Offset(0, 4),
+                                            spreadRadius: 0,
+                                          )
+                                        ],
                                       ),
-                                      shadows: [
-                                        BoxShadow(
-                                          color: Color(0x3F000000),
-                                          blurRadius: 4,
-                                          offset: Offset(0, 4),
-                                          spreadRadius: 0,
-                                        )
-                                      ],
+                                      child: Icon(Icons.videocam_outlined,size: 50,),
                                     ),
-                                    child: Icon(Icons.videocam_outlined,size: 50,),
                                   ),
 
                                   Text("Video Conferenceing",
                                     style: TextStyle(
                                         fontSize: 13
                                     ),)
-
                                 ],
                               ),
 
 
                             ],
                           )
-
-
 
                         ],
                       ),
@@ -326,7 +359,7 @@ class CollaborationPage extends StatelessWidget {
                 ],
               ),
 
-              Tools()
+              Tools(index: select,),
 
 
             ],
@@ -338,19 +371,19 @@ class CollaborationPage extends StatelessWidget {
 }
 
 class Tools extends StatelessWidget {
-  Tools({super.key,});
+  final int index;
+
+  Tools({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.3,
       height: MediaQuery.of(context).size.height * 0.9,
-      decoration: ShapeDecoration(
+      decoration: BoxDecoration(
         color: Color(0xFFD9D9D9),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        shadows: [
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
           BoxShadow(
             color: Color(0x3F000000),
             blurRadius: 4,
@@ -359,6 +392,19 @@ class Tools extends StatelessWidget {
           )
         ],
       ),
+      child: _buildContent(),
     );
   }
+
+  Widget _buildContent() {
+    switch (index) {
+      case 0:
+        return Threads();
+      default:
+        return Container(); // Return a default widget if index doesn't match any case
+    }
+  }
 }
+
+
+
