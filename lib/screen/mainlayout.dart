@@ -8,17 +8,17 @@ import 'package:mini_project/screen/projects.dart';
 import 'package:mini_project/util/constants.dart';
 import 'package:mini_project/widget/loginwidget.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyAppBar extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyAppBar> {
   final controller = Get.put(AuthController());
   final List<Widget> _tabs = [
     HomePage(),
     Dashboard(),
-    AboutUs(), // Assuming you have AboutUs and Projects widgets defined
+    AboutUs(), 
     Projects(),
   ];
 

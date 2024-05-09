@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 import 'package:mini_project/logic/controller/StatementDetails.dart';
 import 'package:mini_project/screen/collaborationPage.dart';
+import 'package:mini_project/screen/detailPage.dart';
 import 'package:mini_project/screen/psDetail.dart';
 import 'package:mini_project/screen/application.dart';
 
@@ -13,6 +14,7 @@ class Routes {
   static const mainscreen = "/mainscreen";
   static const collaborationPage = "/collaborationPage";
   static const application = "/application";
+  static const detail = "/detail";
 
   static final routes = [
     GetPage(name: psscreen , page: () => ProblemStatementDetails(), binding: BindingsBuilder(() {
@@ -20,7 +22,7 @@ class Routes {
             () => DetailsController(),
           );
         })),
-    GetPage(name: mainscreen, page: () => MyHomePage()),
+    GetPage(name: mainscreen, page: () => MyAppBar()),
     GetPage(name: collaborationPage, page: () => CollaborationPage()),
     GetPage(name: application, page: () => Application()),
   ];
