@@ -6,7 +6,7 @@ import 'package:mini_project/Data/collaborationData.dart';
 import 'package:mini_project/collab_tools/kanbanBoard.dart';
 import 'package:mini_project/model/user.dart';
 import 'package:mini_project/screen/callPage.dart';
-import 'package:mini_project/screen/constants.dart';
+import 'package:mini_project/util/constants.dart';
 import 'package:mini_project/screen/threads.dart';
 
 class CollaborationPage extends StatefulWidget {

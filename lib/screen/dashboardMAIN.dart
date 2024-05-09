@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mini_project/route/route.dart';
-import 'package:mini_project/screen/constants.dart';
+import 'package:mini_project/util/constants.dart';
 
 import '../Data/collaborationData.dart';
 

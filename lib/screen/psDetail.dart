@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mini_project/screen/constants.dart';
+import 'package:mini_project/util/constants.dart';
 import 'package:mini_project/screen/projects.dart';
 import 'package:mini_project/widget/dynamicTexts.dart';
 
