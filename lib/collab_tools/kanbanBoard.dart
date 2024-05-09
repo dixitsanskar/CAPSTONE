@@ -87,11 +87,14 @@ class _KanbanBoardState extends State<KanbanBoard> {
             ),
             if (category == 'To Do') ...[
               SizedBox(height: 8.0),
-              ElevatedButton(
-                onPressed: () {
-                  _addTask(category);
-                },
-                child: Text('Add Task'),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: ElevatedButton(
+                  onPressed: () {
+                    _addTask(category);
+                  },
+                  child: Text('Add New Task'),
+                ),
               ),
             ],
           ],

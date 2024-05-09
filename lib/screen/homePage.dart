@@ -4,6 +4,7 @@ import 'package:mini_project/collab_tools/board_builder.dart';
 import 'package:mini_project/collab_tools/kanbanBoard.dart';
 import 'package:mini_project/logic/controller/SearchController.dart';
 import 'package:mini_project/screen/callPage.dart';
+import 'package:mini_project/screen/constants.dart';
 import 'package:mini_project/service/handlingDataView.dart';
 import 'package:mini_project/widget/infoCard.dart';
 
@@ -33,6 +34,7 @@ class HomePage extends StatelessWidget {
 
   Widget _home(){
     return Scaffold(
+      // backgroundColor: NormalColorShade,
       body: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -55,22 +57,22 @@ class HomePage extends StatelessWidget {
                         text: TextSpan(
                           style: TextStyle(color: Colors.black, fontSize: 24),
                         children: <TextSpan>[
-                      TextSpan(text: 'C', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
-                      TextSpan(text: 'ollaborative ', style: TextStyle( fontSize: 20),),
-                          TextSpan(text: 'A', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
-                          TextSpan(text: 'pproach to ', style: TextStyle( fontSize: 20),),
-                          TextSpan(text: 'P', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
-                          TextSpan(text: 'roblem ', style: TextStyle( fontSize: 20),),
-                          TextSpan(text: 'S', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
-                          TextSpan(text: 'olving ', style: TextStyle( fontSize: 20),),
-                          TextSpan(text: 'T', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
-                          TextSpan(text: 'hrough ', style: TextStyle( fontSize: 20),),
-                          TextSpan(text: 'O', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
-                          TextSpan(text: 'nline ', style: TextStyle( fontSize: 20),),
-                          TextSpan(text: 'N', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
-                          TextSpan(text: 'etworking ', style: TextStyle( fontSize: 20),),
-                          TextSpan(text: 'E', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
-                          TextSpan(text: 'nvironment ', style: TextStyle( fontSize: 20),),
+                      TextSpan(text: 'C', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28,color: darkColorShade),),
+                      TextSpan(text: 'ollaborative ', style: TextStyle( fontSize: 20,color: darkColorShade),),
+                          TextSpan(text: 'A', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28,color: darkColorShade),),
+                          TextSpan(text: 'pproach to ', style: TextStyle( fontSize: 20,color: darkColorShade),),
+                          TextSpan(text: 'P', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28,color: darkColorShade),),
+                          TextSpan(text: 'roblem ', style: TextStyle( fontSize: 20,color: darkColorShade),),
+                          TextSpan(text: 'S', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28,color: darkColorShade),),
+                          TextSpan(text: 'olving ', style: TextStyle( fontSize: 20,color: darkColorShade),),
+                          TextSpan(text: 'T', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28,color: darkColorShade),),
+                          TextSpan(text: 'hrough ', style: TextStyle( fontSize: 20,color: darkColorShade),),
+                          TextSpan(text: 'O', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28,color: darkColorShade),),
+                          TextSpan(text: 'nline ', style: TextStyle( fontSize: 20,color: darkColorShade),),
+                          TextSpan(text: 'N', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28,color: darkColorShade),),
+                          TextSpan(text: 'etworking ', style: TextStyle( fontSize: 20,color: darkColorShade),),
+                          TextSpan(text: 'E', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28,color: darkColorShade),),
+                          TextSpan(text: 'nvironment ', style: TextStyle( fontSize: 20,color: darkColorShade),),
                       ],)
                       ),
                     )
@@ -100,9 +102,9 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: Get.height * 0.05),
               GestureDetector( onTap:() {
-              //  searchController.searchProblemStatement(_searchController.text);
-              //  controller.onpressed();
-              Get.to(KanbanBoard());
+               searchController.searchProblemStatement(_searchController.text);
+               controller.onpressed();
+              // Get.to(KanbanBoard());
             },
               child:
               Container(
@@ -111,7 +113,7 @@ class HomePage extends StatelessWidget {
                 width: Get.width * 0.2,
 
                 decoration: BoxDecoration(
-                  color: Colors.black,
+                  color: darkColorShade,
                   borderRadius: BorderRadius.circular(20)
                 ),
                 child: Row(mainAxisAlignment: MainAxisAlignment.center,

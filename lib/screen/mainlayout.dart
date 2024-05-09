@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mini_project/logic/controller/authController.dart';
 import 'package:mini_project/screen/about.dart';
+import 'package:mini_project/screen/constants.dart';
 import 'package:mini_project/screen/dashboard.dart';
 import 'package:mini_project/screen/projects.dart';
 import 'package:mini_project/widget/loginwidget.dart';
@@ -12,7 +13,6 @@ import 'homePage.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
-
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
    HomePage(),
    Dashboard(),
     // AboutUs(),
-    Projects(),
+    // Projects(),
   ];
 
   @override
@@ -35,7 +35,8 @@ class _MyHomePageState extends State<MyHomePage> {
       length: _tabs.length,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Capstone'),
+          backgroundColor: darkColorShade,
+          title: Text('Capstone',style: TextStyle(color: Colors.white),),
           actions: [
             ElevatedButton(onPressed: (){
              setState(() {
@@ -68,9 +69,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
           bottom:
           TabBar(
-            labelColor: Colors.black,
-            unselectedLabelColor: Colors.black,
-            indicatorColor: Colors.black,
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.white,
+            indicatorColor: Colors.white,
             onTap: (index) {
               if(index == 5)
               {
@@ -96,16 +97,14 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             tabs: [
               Tab(
-                //  icon: Icon(Icons.home),
                 text: 'Home',
               ),
               Tab(
                 text: 'Dashboard',
               ),
-              Tab(
-                // icon: Icon(Icons.info),
-                text: 'Projects',
-              ),
+              // Tab(
+              //   text: 'Projects',
+              // ),
             ],
           ),
 
