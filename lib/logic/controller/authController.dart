@@ -4,46 +4,41 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mini_project/service/service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../model/user.dart';
+import '../../util/shared_pref.dart';
 
 class AuthController extends GetxController {
 
   bool isSignedIn = false;
   FirebaseAuth _auth = FirebaseAuth.instance;
-
+    static const String _keyName = 'name';
+  static const String _keyUsername = 'username';
+  static const String _keyEmail = 'email';
+  static const String _keyPassword = 'password';
+  static const String _keyGitLink = 'gitlink';
+  static const String _keyLinLink = 'linlink';
 
 
   
   @override
-  void onInit() {
+  void onInit() async{
     super.onInit();
   }
+  final prefs = SharedPrefs.sharedPrefs;
   
-  Future<void> signUpWithEmail(String email, String password, String name, String userName, String github_id) async {
+  Future<void> signUpWithEmail(String email, String password, String name, String userName, String github_id, String linlink, ) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
-        email: email.trim(),
-        password: password.trim(),
-      ).then((value)async{
-        Users usr  = Users(
-          id: '${_auth.currentUser!.uid}',
-          name : '${name.trim()}',
-          userName: '${userName.trim()}',
-          github_id: '${github_id.trim()}',
-          resume: '',
-          collab_id: [],
-          
-        );
-        var map = usr.tomap();
-        try {
-          await FirebaseFirestore.instance.collection('Users').doc(_auth.currentUser!.uid).set(map).then((value) => GetSnackBar(title: 'Registration Successful',message: 'Account Created Successfully', borderColor: Colors.green ,));
-        }
-        catch(e){
-            GetSnackBar(title: 'Registration UnSuccessful',message: 'Error Occurred', borderColor: Colors.red,);
-        }
-
-      });
+     await SearchServices.userRegister(name, userName, email, password, github_id, linlink).then((value) async{
+    prefs.setString(_keyName, name);
+    prefs.setString(_keyUsername, userName);
+    prefs.setString(_keyEmail, email);
+    prefs.setString(_keyPassword, password);
+    prefs.setString(_keyGitLink, github_id);
+    prefs.setString(_keyLinLink, linlink);
+     });      
     } catch (e) {
       Get.snackbar("Error creating account", e.toString(),
           snackPosition: SnackPosition.BOTTOM);
@@ -52,10 +47,18 @@ class AuthController extends GetxController {
   
   Future<void> signInWithEmail(String email, String password) async {
     try {
-      await _auth.signInWithEmailAndPassword(
-        email: email.trim(),
-        password: password.trim(),
-      );
+      var result = SearchServices.userLogin(email, password).then((value) {
+        if (value!.id !=null)
+        {
+            prefs.setString(_keyName, value.id ?? "");
+        prefs.setString(_keyName, value.name ?? "");
+    prefs.setString(_keyUsername, value.username ?? "");
+    prefs.setString(_keyEmail, value.email ?? "");
+    prefs.setString(_keyGitLink, value.gitlink ?? "");
+    prefs.setString(_keyLinLink, value.linlink ?? "");
+        }
+      });
+
     } catch (e) {
       Get.snackbar("Error signing in", e.toString(),
           snackPosition: SnackPosition.BOTTOM);
@@ -70,23 +73,6 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> updateUserDetails(String displayName, String photoURL) async {
-    try {
-      User? user = _auth.currentUser;
-      if (user != null) {
-        await user.updateProfile(displayName: displayName, photoURL: photoURL);
-        await user.reload();
-        user = _auth.currentUser;
-        // Update user details in Firestore if needed
-        FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
-          'displayName': user.displayName,
-          'email': user.email,
-          'photoURL': user.photoURL,
-        });
-      }
-    } catch (e) {
-      print(e.toString());
-    }
-  }
+  
 
 }

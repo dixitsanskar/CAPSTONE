@@ -32,7 +32,7 @@ class Routes {
     GetPage(name: mainscreen, page: () => MyAppBar()),
     GetPage(name: collaborationPage, page: () => CollaborationPage()),
     GetPage(name: application, page: () => Application()),
-    GetPage(name: initialdetails, page: () => initialDetails()),
+    GetPage(name: initialdetails, page: () => InitialDetails()),
     GetPage(name: login, page: () => LoginScreen()),
   ];
 }
