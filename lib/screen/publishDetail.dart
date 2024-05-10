@@ -18,7 +18,7 @@ class _FormPageState extends State<PublishDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Form Page'),
+        title: Text('Pulish Details'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
