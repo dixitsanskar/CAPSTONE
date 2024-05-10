@@ -48,7 +48,7 @@ class user {
     linlink = json['linlink'];
     name = json['name'];
     username = json['username'];
-    projects = List<Project>.from(json['commentSection']?.map(
+    projects = List<Project>.from(json['projects']?.map(
             (commentSection) => Project.fromJson(commentSection),
           ) ??
           []);

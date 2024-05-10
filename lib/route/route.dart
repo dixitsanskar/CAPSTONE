@@ -9,6 +9,7 @@ import 'package:mini_project/screen/login.dart'; // Import login.dart
 import 'package:mini_project/screen/psDetail.dart';
 import 'package:mini_project/screen/application.dart';
 import 'package:mini_project/screen/initialDetails.dart';
+import 'package:mini_project/screen/publishDetail.dart';
 import 'package:mini_project/widget/loginwidget.dart'; // Correct the import statement
 import '../screen/mainlayout.dart';
 
@@ -20,6 +21,7 @@ class Routes {
   static const detail = "/detail";
   static const initialdetails = "/initialDetails";
   static const login = "/login";
+  static const pubdet = "/pubdet";
 
   static final routes = [
     GetPage(
@@ -34,5 +36,6 @@ class Routes {
     GetPage(name: application, page: () => Application()),
     GetPage(name: initialdetails, page: () => InitialDetails()),
     GetPage(name: login, page: () => LoginScreen()),
+    GetPage(name: pubdet, page: () => PublishDetail()),
   ];
 }
