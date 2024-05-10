@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
           appBar: AppBar(
-            title: const Text('Ant Media Server Example'),
+            title: const Text('Capstone conference'),
             actions: <Widget>[
               IconButton(
                 icon: const Icon(Icons.settings),

@@ -13,11 +13,21 @@ class Team{
 
 class RoomController extends GetxController{
 
+bool isLoading = false;
 
-
-void createRoom()
+void startLoading()
 {
+  isLoading = true;
+}
+void stopLoading()
+{
+  isLoading = false;
+}
 
+
+void createRoom(int  )
+{
+  
 }
 
 
