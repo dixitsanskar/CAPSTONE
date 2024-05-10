@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-
-
 class Threadsss extends StatelessWidget {
   const Threadsss({
     super.key,
@@ -15,15 +13,14 @@ class Threadsss extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text("Threaded Conversation",
-        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-
+        Text(
+          "Threaded Conversation",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
       ],
     );
   }
 }
-
-
 
 class Threads extends StatelessWidget {
   Threads({
@@ -34,8 +31,14 @@ class Threads extends StatelessWidget {
   late String messageText;
 
   late RxList messages = [
-    MessageBubble("Hi Sir, I am a flutter Developer. Can you please guide me!", false,),
-    MessageBubble("Yes Sure", true,),
+    MessageBubble(
+      "Hi Sir, I am a flutter Developer. Can you please guide me!",
+      false,
+    ),
+    MessageBubble(
+      "Yes Sure",
+      true,
+    ),
   ].obs;
 
   @override
@@ -49,21 +52,24 @@ class Threads extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Expanded( // Wrap ListView.builder with Expanded
+          Expanded(
+            // Wrap ListView.builder with Expanded
             child: Container(
-              child: Obx(() =>
-                  ListView.builder(
-                    itemCount: messages.length, // Add itemCount property
-                    itemBuilder: (BuildContext context, int index) {
-                      return messages[index];
-                    },
-                  ),
+              child: Obx(
+                () => ListView.builder(
+                  itemCount: messages.length, // Add itemCount property
+                  itemBuilder: (BuildContext context, int index) {
+                    return messages[index];
+                  },
+                ),
               ),
             ),
           ),
           Container(
             height: 60,
-            decoration: BoxDecoration(color: Colors.black,),
+            decoration: BoxDecoration(
+              color: Colors.black,
+            ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -75,7 +81,8 @@ class Threads extends StatelessWidget {
                       messageText = value;
                     },
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 0.0),
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 10.0, horizontal: 0.0),
                       hintText: 'Send a message...',
                       hintStyle: TextStyle(color: Colors.white),
                       icon: Padding(
@@ -132,7 +139,8 @@ class MessageBubble extends StatelessWidget {
         top: 5,
       ),
       child: Column(
-        crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        crossAxisAlignment:
+            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
           Material(
             borderRadius: BorderRadius.only(
@@ -158,8 +166,8 @@ class MessageBubble extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-
-                      Icon(Icons.done, size: 14, color: isMe ? Colors.black : Colors.black),
+                      Icon(Icons.done,
+                          size: 14, color: isMe ? Colors.black : Colors.black),
                     ],
                   ),
                 ],

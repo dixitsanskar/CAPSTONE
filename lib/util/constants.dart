@@ -38,7 +38,7 @@ const kTextFieldDecoration = InputDecoration(
   ),
 );
 
-
+String baseUrl = "http://127.0.0.1:5000";
 Color darkColorShade = Color(0xFF0A2351);
 Color NormalColorShade = Color(0xffCDC6F2);
 // static Color lightBlue = Color(0xffC8D0DB);

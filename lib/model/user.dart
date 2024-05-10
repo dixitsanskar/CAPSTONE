@@ -1,99 +1,103 @@
-
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-
-class Users{
-  String? id;
-  String? name;
-  String? userName;
-  String? github_id;
-  String? resume;
-  List<Collaboration>? collab_id;
-  Users({this.id, this.collab_id, this.name, this.userName, this.github_id, this.resume});
-
-  Map<String, dynamic> tomap() {
-    return {
-      'id': id,
-      'collab_id': collab_id,
-      'name': name,
-      'userName': userName,
-      'github_id': github_id,
-      'resume': resume,
-    };
-
-  }
-
-  Users.fromMap(DocumentSnapshot snapshot){
-    Map<String,dynamic> data = snapshot.data() as Map<String,dynamic>;
-    id = data['id'];
-    collab_id = List<Collaboration>.from(data['collab_id']?.map((e)=> Collaboration.fromMap(e)));
-    name = data['name']??"";
-    userName = data['userName']??"";
-    github_id = data['github_id']??"";
-    resume = data['resume']??"";
-
-  }
-
-}
-
-class Collaboration{
-  String? id;
-  String? project_id;
-  String? team_name;
-  String? team_member_no;
-  List<TeamMember>? teammembers;
+class UserData{
+  user? info;
   String? status;
-  String? timeStamp;
-  Collaboration({ this.id, this.project_id, this.status, this.team_member_no, this.team_name, this.teammembers, this.timeStamp });
 
-
-
-  Map<String, dynamic> tomap() {
-    return {
-      'id': id,
-      'project_id': project_id,
-      'status': status,
-      'team_member_no': team_member_no,
-      'team_name': team_name,
-      'teammembers': teammembers,
-      'timeStamp': timeStamp,
-
-    };
-
+  UserData({this.info, this.status});
+   UserData.fromJson(Map<String, dynamic> json) {
+    info = json['info'] != null ? new user.fromJson(json['info']) : null;
+    status = json['status'];
   }
 
-  Collaboration.fromMap(DocumentSnapshot snapshot){
-    Map<String,dynamic> data = snapshot.data() as Map<String,dynamic>;
-    id = data['id'];
-    project_id = data['project_id']??"";
-    status = data['status']??"";
-    team_member_no = data['team_member_no']??"";
-    team_name = data['team_name']??"";
-    teammembers = List<TeamMember>.from(data['teammembers']?.map((e)=> TeamMember.fromMap(e)));
-    timeStamp = data['timeStamp']??"";
-
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.info != null) {
+      data['info'] = this.info!.toJson();
+    }
+    data['status'] = this.status;
+    return data;
   }
+
+
 
 }
 
-class TeamMember{
+
+class user {
+  String? email;
+  String? gitlink;
   String? id;
+  String? linlink;
   String? name;
+  String? username;
+  List<Project>? projects=[];
 
-  TeamMember({this.id, this.name});
+  user(
+      {this.email,
+      this.gitlink,
+      this.id,
+      this.linlink,
+      this.name,
+      this.username,
+      required this.projects
+      });
 
-  Map<String, dynamic> tomap() {
+  user.fromJson(Map<String, dynamic> json) {
+    email = json['email'];
+    gitlink = json['gitlink'];
+    id = json['id'];
+    linlink = json['linlink'];
+    name = json['name'];
+    username = json['username'];
+    projects = List<Project>.from(json['commentSection']?.map(
+            (commentSection) => Project.fromJson(commentSection),
+          ) ??
+          []);
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['email'] = this.email;
+    data['gitlink'] = this.gitlink;
+    data['id'] = this.id;
+    data['linlink'] = this.linlink;
+    data['name'] = this.name;
+    data['username'] = this.username;
+    data['projects']= this.projects;
+    return data;
+  }
+
+
+}
+
+
+class Project {
+  String id;
+  String problemID;
+  String token;
+  String status;
+
+  Project({
+    required this.id,
+    required this.problemID,
+    required this.token,
+    this.status = 'Planning',
+  });
+
+  Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'name': name,
+      '_id': id,
+      'project_id': problemID,
+      'ptoken': token,
+      'status': status,
     };
-
   }
 
-  TeamMember.fromMap(DocumentSnapshot snapshot){
-    Map<String,dynamic> data = snapshot.data() as Map<String,dynamic>;
-    id = data['id'];
-    name = data['name']??"";
+  factory Project.fromJson(Map<String, dynamic> json) {
+    return Project(
+      id: json['_id'],
+      problemID: json['project_id'],
+      token: json['ptoken'],
+      status: json['status'] ?? 'Planning',
+    );
   }
-
 }

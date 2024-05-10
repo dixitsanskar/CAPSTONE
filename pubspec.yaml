@@ -49,5 +49,4 @@ flutter:
     - assets/person3.jpg
     - assets/person4.jpg
     - assets/notyet.png
-    - assets/index.html
-    - assets/joinWhiteboard.js
+    - assets/images/login.png

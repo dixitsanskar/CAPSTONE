@@ -13,36 +13,36 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    teamMembers = [
-      'Vishesh', 'Sanskar', 'Tanisha', 'Siddhant'
-    ];
+    teamMembers = ['Vishesh', 'Sanskar', 'Tanisha', 'Siddhant'];
     teamName = 'Herobrine';
 
     return Scaffold(
-      // backgroundColor: NormalColorShade,
       body: SingleChildScrollView(
         child: Column(
           children: [
-
             Wrap(
               alignment: WrapAlignment.start,
               runSpacing: 10,
-
-              children: List.generate(teams.length, (index) =>
-                  GestureDetector(
-                    onTap: (){Get.toNamed(Routes.collaborationPage, arguments: {'teamName': teams[index]['teamName'], 'teamMembers': teams[index]['teamMembers'],'problemStatement': teams[index]['problemStatement']});},
-                    child: CollaborationCard(
-                        teamName: teams[index]['teamName'],
-                        teamMembers: teams[index]['teamMembers'],
-                        ),
+              children: List.generate(
+                teams.length,
+                (index) => GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.collaborationPage, arguments: {
+                      'teamName': teams[index]['teamName'],
+                      'teamMembers': teams[index]['teamMembers'],
+                      'problemStatement': teams[index]['problemStatement']
+                    });
+                  },
+                  child: CollaborationCard(
+                    teamName: teams[index]['teamName'],
+                    teamMembers: teams[index]['teamMembers'],
                   ),
+                ),
               ),
             )
           ],
         ),
       ),
-
     );
   }
 }
@@ -73,20 +73,21 @@ class CollaborationCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text("Team Name : " + teamName,
-              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),
+              Text(
+                "Team Name : " + teamName,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
-              Text("Team Members : ",
-                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
+              Text(
+                "Team Members : ",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
               ),
               ListView.builder(
-                shrinkWrap: true,
-                primary: false,
-                itemCount: teamMembers.length,
+                  shrinkWrap: true,
+                  primary: false,
+                  itemCount: teamMembers.length,
                   itemBuilder: (BuildContext context, int index) {
-                return Text("${index+1}. ${teamMembers[index]}");
-              } )
-
+                    return Text("${index + 1}.${teamMembers[index]}");
+                  })
             ],
           ),
         ),
