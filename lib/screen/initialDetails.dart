@@ -3,16 +3,30 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:mini_project/logic/controller/authController.dart';
 import 'package:mini_project/screen/homePage.dart';
 import 'package:mini_project/screen/mainlayout.dart';
 import 'package:mini_project/util/constants.dart';
 
-class initialDetails extends StatelessWidget {
-  const initialDetails({Key? key}) : super(key: key);
+class InitialDetails extends StatelessWidget {
+  InitialDetails({Key? key}) : super(key: key);
+
+    TextEditingController fullNameController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+    TextEditingController confirmPasswordController = TextEditingController();
+    TextEditingController workMailController = TextEditingController();
+    TextEditingController githubLinkController = TextEditingController();
+    TextEditingController linkedInLinkController = TextEditingController();
+
+    final controller = Get.put(AuthController());
+
 
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
+    
+    // TextEditingController instances
+
     return Scaffold(
       body: Stack(
         children: [
@@ -91,6 +105,7 @@ class initialDetails extends StatelessWidget {
                                   color: Color(0xFFF5F5F5),
                                 ),
                                 child: TextFormField(
+                                  controller: fullNameController,
                                   decoration: InputDecoration(
                                     hintText: "Enter Your Name",
                                     prefixIcon: Icon(Icons.person),
@@ -129,6 +144,7 @@ class initialDetails extends StatelessWidget {
                                   color: Color(0xFFF5F5F5),
                                 ),
                                 child: TextFormField(
+                                  controller: passwordController,
                                   decoration: InputDecoration(
                                     hintText: "Enter Password",
                                     prefixIcon: Icon(Icons.lock),
@@ -167,6 +183,7 @@ class initialDetails extends StatelessWidget {
                                   color: Color(0xFFF5F5F5),
                                 ),
                                 child: TextFormField(
+                                  controller: confirmPasswordController,
                                   decoration: InputDecoration(
                                     hintText: "Enter Confirm Password",
                                     prefixIcon: Icon(Icons.lock),
@@ -207,6 +224,7 @@ class initialDetails extends StatelessWidget {
                                   color: Color(0xFFF5F5F5),
                                 ),
                                 child: TextFormField(
+                                  controller: workMailController,
                                   decoration: InputDecoration(
                                     hintText: "Enter Your Mail",
                                     prefixIcon: Icon(Icons.mail),
@@ -245,6 +263,7 @@ class initialDetails extends StatelessWidget {
                                   color: Color(0xFFF5F5F5),
                                 ),
                                 child: TextFormField(
+                                  controller: githubLinkController,
                                   decoration: InputDecoration(
                                     hintText: "Enter your github link",
                                     prefixIcon: Icon(Icons.link),
@@ -283,6 +302,7 @@ class initialDetails extends StatelessWidget {
                                   color: Color(0xFFF5F5F5),
                                 ),
                                 child: TextFormField(
+                                  controller: linkedInLinkController,
                                   decoration: InputDecoration(
                                     hintText: "Enter your linkedin link",
                                     prefixIcon: Icon(Icons.link),
@@ -310,8 +330,23 @@ class initialDetails extends StatelessWidget {
                       ),
                       child: InkWell(
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => MyAppBar()));
+                          // Handle create button tap
+                          // You can access form data through controller.text
+                          // For example:
+                          String fullName = fullNameController.text;
+                          String password = passwordController.text;
+                          String confirmPassword = confirmPasswordController.text;
+                          String workMail = workMailController.text;
+                          String githubLink = githubLinkController.text;
+                          String linkedInLink = linkedInLinkController.text;
+                          // Now you can use this data as needed, such as sending it to an API
+                          controller.signUpWithEmail(workMail, password, fullName, fullName.substring(0, 3).replaceAll(' ', '') , githubLink, linkedInLink).then((value) {
+                            controller.isSignedIn = true;
+                            controller.update();
+                            Navigator.pop(context);
+
+                          });
+
                         },
                         child: Center(
                           child: Text(

@@ -5,14 +5,16 @@ import 'package:mini_project/model/user.dart';
 import 'package:mini_project/service/statusrequest.dart';
 import 'package:mini_project/util/constants.dart';
 
+import '../model/room.dart';
+
 class SearchServices {
   static Future<List<Results>> searchProblemStatement(
       int pageIndex, String searchVal) async {
     var headers = {'Content-Type': 'application/json',
     };
     var data = json.encode({
-      "username": searchVal ,
-      "password": pageIndex ,
+      "input_text": searchVal ,
+      "page": pageIndex ,
     });
 
     var dio = Dio();
@@ -92,7 +94,6 @@ class SearchServices {
     String password,
     String gitlink,
     String linlink,
-    List<Project> projects,
   ) async {
     var headers = {'Content-Type': 'application/json'};
     var data = json.encode({
@@ -102,7 +103,6 @@ class SearchServices {
       "password": password,
       "gitlink": gitlink,
       "linlink": linlink,
-      "projects": projects.map((project) => project.toJson()).toList(),
     });
 
     var dio = Dio();
@@ -128,6 +128,46 @@ class SearchServices {
       return null;
     }
   }
+
+   static Future<Map<String, dynamic>?> createRoom({
+    required String roomName,
+    required List<TeamDetails> teamMembers,
+    required String problemId,
+    required String roomToken,
+    required String videoConference,
+  }) async {
+    var headers = {'Content-Type': 'application/json'};
+    var data = json.encode({
+      "room_name": roomName,
+      "team_members": teamMembers.map((member) => member.toJson()).toList(),
+      "problem_id": problemId,
+      "room_token": roomToken,
+      "videocon": videoConference,
+    });
+
+    var dio = Dio();
+
+    try {
+      var response = await dio.post(
+        '$baseUrl/create-room',
+        options: Options(
+          headers: headers,
+        ),
+        data: data,
+      );
+
+      if (response.statusCode == 200) {
+        return response.data;
+      } else {
+        print('Error: ${response.statusCode}, ${response.statusMessage}');
+        return null;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return null;
+    }
+  }
+
 }
 
 

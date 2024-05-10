@@ -144,32 +144,32 @@ class Application extends StatelessWidget {
                           SizedBox(
                             height: 20,
                           ),
-                          Text(
-                            'Phone Number',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          SizedBox(
-                            width: 350,
-                            height: 26,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                hintText: '+91 0000000000',
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(2.0),
-                                ),
-                                contentPadding: EdgeInsets.all(2),
-                              ),
-                            ),
-                          ),
+                          // Text(
+                          //   'Phone Number',
+                          //   style: TextStyle(
+                          //     fontSize: 13,
+                          //     fontWeight: FontWeight.bold,
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: 4,
+                          // ),
+                          // SizedBox(
+                          //   width: 350,
+                          //   height: 26,
+                          //   child: TextFormField(
+                          //     decoration: InputDecoration(
+                          //       fillColor: Colors.white,
+                          //       filled: true,
+                          //       hintText: '+91 0000000000',
+                          //       border: OutlineInputBorder(
+                          //         borderSide: BorderSide.none,
+                          //         borderRadius: BorderRadius.circular(2.0),
+                          //       ),
+                          //       contentPadding: EdgeInsets.all(2),
+                          //     ),
+                          //   ),
+                          // ),
                           SizedBox(
                             height: 30,
                           ),
@@ -241,32 +241,32 @@ class Application extends StatelessWidget {
                           SizedBox(
                             height: 20,
                           ),
-                          Text(
-                            'Phone Number',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          SizedBox(
-                            width: 350,
-                            height: 26,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                hintText: '+91 0000000000',
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(2.0),
-                                ),
-                                contentPadding: EdgeInsets.all(2),
-                              ),
-                            ),
-                          ),
+                          // Text(
+                          //   'Phone Number',
+                          //   style: TextStyle(
+                          //     fontSize: 13,
+                          //     fontWeight: FontWeight.bold,
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: 4,
+                          // ),
+                          // SizedBox(
+                          //   width: 350,
+                          //   height: 26,
+                          //   child: TextFormField(
+                          //     decoration: InputDecoration(
+                          //       fillColor: Colors.white,
+                          //       filled: true,
+                          //       hintText: '+91 0000000000',
+                          //       border: OutlineInputBorder(
+                          //         borderSide: BorderSide.none,
+                          //         borderRadius: BorderRadius.circular(2.0),
+                          //       ),
+                          //       contentPadding: EdgeInsets.all(2),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                       Column(
@@ -340,32 +340,32 @@ class Application extends StatelessWidget {
                           SizedBox(
                             height: 20,
                           ),
-                          Text(
-                            'Phone Number',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          SizedBox(
-                            width: 350,
-                            height: 26,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                hintText: '+91 0000000000',
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(2.0),
-                                ),
-                                contentPadding: EdgeInsets.all(2),
-                              ),
-                            ),
-                          ),
+                          // Text(
+                          //   'Phone Number',
+                          //   style: TextStyle(
+                          //     fontSize: 13,
+                          //     fontWeight: FontWeight.bold,
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: 4,
+                          // ),
+                          // SizedBox(
+                          //   width: 350,
+                          //   height: 26,
+                          //   child: TextFormField(
+                          //     decoration: InputDecoration(
+                          //       fillColor: Colors.white,
+                          //       filled: true,
+                          //       hintText: '+91 0000000000',
+                          //       border: OutlineInputBorder(
+                          //         borderSide: BorderSide.none,
+                          //         borderRadius: BorderRadius.circular(2.0),
+                          //       ),
+                          //       contentPadding: EdgeInsets.all(2),
+                          //     ),
+                          //   ),
+                          // ),
                           SizedBox(
                             height: 30,
                           ),
@@ -437,32 +437,32 @@ class Application extends StatelessWidget {
                           SizedBox(
                             height: 20,
                           ),
-                          Text(
-                            'Phone Number',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          SizedBox(
-                            width: 350,
-                            height: 26,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                hintText: '+91 0000000000',
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(2.0),
-                                ),
-                                contentPadding: EdgeInsets.all(2),
-                              ),
-                            ),
-                          ),
+                          // Text(
+                          //   'Phone Number',
+                          //   style: TextStyle(
+                          //     fontSize: 13,
+                          //     fontWeight: FontWeight.bold,
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: 4,
+                          // ),
+                          // SizedBox(
+                          //   width: 350,
+                          //   height: 26,
+                          //   child: TextFormField(
+                          //     decoration: InputDecoration(
+                          //       fillColor: Colors.white,
+                          //       filled: true,
+                          //       hintText: '+91 0000000000',
+                          //       border: OutlineInputBorder(
+                          //         borderSide: BorderSide.none,
+                          //         borderRadius: BorderRadius.circular(2.0),
+                          //       ),
+                          //       contentPadding: EdgeInsets.all(2),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ],

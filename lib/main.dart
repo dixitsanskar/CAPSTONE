@@ -6,9 +6,11 @@ import 'package:mini_project/screen/homePage.dart';
 
 import 'firebase_options.dart';
 import 'screen/mainlayout.dart';
+import 'util/shared_pref.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+    await SharedPrefs.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MainApp());
 }
