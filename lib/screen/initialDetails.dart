@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:mini_project/screen/homePage.dart';
 import 'package:mini_project/screen/mainlayout.dart';
 import 'package:mini_project/util/constants.dart';
@@ -99,10 +100,10 @@ class initialDetails extends StatelessWidget {
                                             14.0), // Adjust vertical padding as needed
                                   ),
                                 )),
-
-                                SizedBox(height: 10.h,),
-
-                                Text(
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Text(
                               'Password',
                               style: TextStyle(
                                 fontSize: 16,
@@ -137,9 +138,10 @@ class initialDetails extends StatelessWidget {
                                             14.0), // Adjust vertical padding as needed
                                   ),
                                 )),
-
-                                SizedBox(height: 15.h,),
-                                Text(
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            Text(
                               'Confirm Password',
                               style: TextStyle(
                                 fontSize: 16,
@@ -174,11 +176,8 @@ class initialDetails extends StatelessWidget {
                                             14.0), // Adjust vertical padding as needed
                                   ),
                                 )),
-
-                                
                           ],
                         ),
-
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -217,10 +216,10 @@ class initialDetails extends StatelessWidget {
                                             14.0), // Adjust vertical padding as needed
                                   ),
                                 )),
-
-                                SizedBox(height: 10.h,),
-
-                                Text(
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Text(
                               'Github Link',
                               style: TextStyle(
                                 fontSize: 16,
@@ -255,9 +254,10 @@ class initialDetails extends StatelessWidget {
                                             14.0), // Adjust vertical padding as needed
                                   ),
                                 )),
-
-                                SizedBox(height: 15.h,),
-                                Text(
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            Text(
                               'LinkedIn Link',
                               style: TextStyle(
                                 fontSize: 16,
@@ -292,35 +292,41 @@ class initialDetails extends StatelessWidget {
                                             14.0), // Adjust vertical padding as needed
                                   ),
                                 )),
-
-                                
                           ],
                         )
                       ],
                     ),
-                    SizedBox(height: 70.h,),
-                    Center(
-                      child: Container(
-                    width: 360,
-                    height: 35,
-                    decoration: ShapeDecoration(
-                      color: Color(0xFF0A2351),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4)),
+                    SizedBox(
+                      height: 70.h,
                     ),
-                    child: Center(
-                      child: Text(
-                        'Create',
-                        style: TextStyle(
-                          color: Color(0xFFC8C8D0),
-                          fontSize: 16,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w700,
-                          height: 0,
+                    Center(
+                        child: Container(
+                      width: 360,
+                      height: 35,
+                      decoration: ShapeDecoration(
+                        color: Color(0xFF0A2351),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4)),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => MyAppBar()));
+                        },
+                        child: Center(
+                          child: Text(
+                            'Create',
+                            style: TextStyle(
+                              color: Color(0xFFC8C8D0),
+                              fontSize: 16,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w700,
+                              height: 0,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ))
+                    ))
                   ],
                 ),
               ),
