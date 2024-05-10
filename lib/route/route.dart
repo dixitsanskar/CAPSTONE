@@ -6,7 +6,7 @@ import 'package:mini_project/screen/collaborationPage.dart';
 import 'package:mini_project/screen/detailPage.dart';
 import 'package:mini_project/screen/psDetail.dart';
 import 'package:mini_project/screen/application.dart';
-
+import 'package:mini_project/screen/initialDetails.dart';
 import '../screen/mainlayout.dart';
 
 class Routes {
@@ -15,6 +15,7 @@ class Routes {
   static const collaborationPage = "/collaborationPage";
   static const application = "/application";
   static const detail = "/detail";
+  static const initialdetails = "/initialDetails";
 
   static final routes = [
     GetPage(name: psscreen , page: () => ProblemStatementDetails(), binding: BindingsBuilder(() {
@@ -25,5 +26,6 @@ class Routes {
     GetPage(name: mainscreen, page: () => MyAppBar()),
     GetPage(name: collaborationPage, page: () => CollaborationPage()),
     GetPage(name: application, page: () => Application()),
+    GetPage(name: initialdetails, page: () => initialDetails()),
   ];
 }
