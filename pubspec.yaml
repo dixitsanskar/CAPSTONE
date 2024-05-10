@@ -29,9 +29,11 @@ dependencies:
   kanban_board: ^0.1.0
   dotted_border: ^2.0.0+1
   provider: ^6.1.2
-  js: ^0.6.7
+  shared_preferences: ^2.2.3
+  flutter_screenutil: ^5.9.0
   flutter_webview_plugin: ^0.4.0
   flutter_webrtc: ^0.9.48+hotfix.1
+  ant_media_flutter: ^1.4.0
 
 dev_dependencies:
   flutter_test:
@@ -46,5 +48,6 @@ flutter:
     - assets/person2.jpg
     - assets/person3.jpg
     - assets/person4.jpg
+    - assets/notyet.png
     - assets/index.html
     - assets/joinWhiteboard.js

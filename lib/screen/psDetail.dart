@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mini_project/screen/constants.dart';
+import 'package:mini_project/util/constants.dart';
 import 'package:mini_project/screen/projects.dart';
 import 'package:mini_project/widget/dynamicTexts.dart';
 
@@ -41,7 +41,7 @@ class _ProblemStatementDetailsState extends State<ProblemStatementDetails>
     return Scaffold(
       appBar: AppBar(title: DynamicText(
         text: '${controller.prodectData!.title}',
-        style: TextStyle(color: darkColorShade, fontSize: 30,),
+        style: TextStyle(color: darkColorShade, fontSize: 20,),
       ),),
       body: Column(
         children: [
@@ -92,7 +92,12 @@ class Review extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("Review"),
+        child: Column(
+          children: [
+            Image.asset('assets/notyet.png',height: 250,width: 250,),
+            Text("No Reviews yet", style: TextStyle(fontSize: 25,),),
+          ],
+        ),
       ),
     );
   }
@@ -128,7 +133,7 @@ class Collaboration extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Submitting your application will share the following with the XYZ organizers',
+                    'Submitting your application will share the following with the organizers',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
