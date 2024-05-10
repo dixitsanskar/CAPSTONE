@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mini_project/collab_tools/kanbanBoard.dart';
+import 'package:mini_project/collab_tools/whiteboard_tool.dart';
 import 'package:mini_project/logic/controller/SearchController.dart';
 import 'package:mini_project/screen/callPage.dart';
 import 'package:mini_project/screen/constants.dart';
@@ -103,7 +104,7 @@ class HomePage extends StatelessWidget {
               GestureDetector( onTap:() {
                searchController.searchProblemStatement(_searchController.text);
                controller.onpressed();
-              // Get.to(KanbanBoard());
+              // Get.to(WhiteboardScreen());
             },
               child:
               Container(

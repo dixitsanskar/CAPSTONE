@@ -413,7 +413,7 @@ class Tools extends StatelessWidget {
           child: Center(child: Text("Future Implementation"),),
         ); // Add return statement for case 2
       case 3:
-        return CallPage();
+        // return CallPage();
       default:
         return Container(); // Return a default widget if index doesn't match any case
     }

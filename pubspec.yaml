@@ -15,7 +15,7 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^4.6.5
-  http: ^1.1.0
+  http: ^1.2.0
   permission_handler: ^11.3.1
   intl: ^0.17.0
   cached_network_image: ^3.0.0
@@ -29,6 +29,9 @@ dependencies:
   kanban_board: ^0.1.0
   dotted_border: ^2.0.0+1
   provider: ^6.1.2
+  js: ^0.6.7
+  flutter_webview_plugin: ^0.4.0
+  flutter_webrtc: ^0.9.48+hotfix.1
 
 dev_dependencies:
   flutter_test:
@@ -43,3 +46,5 @@ flutter:
     - assets/person2.jpg
     - assets/person3.jpg
     - assets/person4.jpg
+    - assets/index.html
+    - assets/joinWhiteboard.js
