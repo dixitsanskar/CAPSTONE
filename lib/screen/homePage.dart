@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 import 'package:mini_project/collab_tools/kanbanBoard.dart';
 import 'package:mini_project/collab_tools/whiteboard_tool.dart';
 import 'package:mini_project/logic/controller/SearchController.dart';
 import 'package:mini_project/screen/callPage.dart';
+import 'package:mini_project/screen/publishDetail.dart';
 import 'package:mini_project/util/constants.dart';
 import 'package:mini_project/service/handlingDataView.dart';
 import 'package:mini_project/widget/infoCard.dart';
@@ -41,8 +43,10 @@ class HomePage extends StatelessWidget {
                   child: Column(children: [
                     Text(
                       'CAPSTONE',
-                      style:
-                          TextStyle(fontSize: 70, fontWeight: FontWeight.bold,color: Color(0xFF0A2351)),
+                      style: TextStyle(
+                          fontSize: 70,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF0A2351)),
                     ),
                     SizedBox(
                       height: 10,
@@ -178,7 +182,10 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: Get.height * 0.05),
-              GestureDetector(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
                   onTap: () {
                     searchController
                         .searchProblemStatement(_searchController.text);
@@ -204,7 +211,34 @@ class HomePage extends StatelessWidget {
                             style: TextStyle(color: Colors.white),
                           )
                         ]),
+                  )),
+
+                  GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.pubdet);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    height: 50,
+                    width: Get.width * 0.2,
+                    decoration: BoxDecoration(
+                        color: darkColorShade,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.file_copy_rounded,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            'Publish your project',
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ]),
                   ))
+                ],
+              )
             ],
           ),
         ),
