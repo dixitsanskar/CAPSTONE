@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
     return  GetMaterialApp(
       title: 'CAPSTONE',
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.mainscreen,
+      initialRoute: Routes.initialdetails,
       getPages: Routes.routes ,
     );
   }

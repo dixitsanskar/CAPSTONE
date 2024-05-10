@@ -467,7 +467,9 @@ class Application extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Center(
                       child: Container(
                     width: 360,
@@ -479,15 +481,15 @@ class Application extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                          'Submit Details',
-                          style: TextStyle(
-                            color: Color(0xFFC8C8D0),
-                            fontSize: 16,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w700,
-                            height: 0,
-                          ),
+                        'Submit Details',
+                        style: TextStyle(
+                          color: Color(0xFFC8C8D0),
+                          fontSize: 16,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w700,
+                          height: 0,
                         ),
+                      ),
                     ),
                   ))
                 ],
