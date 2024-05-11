@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:mini_project/Data/collaborationData.dart';
 import 'package:mini_project/collab_tools/kanbanBoard.dart';
+import 'package:mini_project/collab_tools/video_sdk/screens/common/join_screen.dart';
 import 'package:mini_project/model/user.dart';
 import 'package:mini_project/screen/callPage.dart';
 import 'package:mini_project/screen/call_page/calling_page.dart';
@@ -421,7 +422,7 @@ class Tools extends StatelessWidget {
                 "Future Implementation",),),
         ); // Add return statement for case 2
       case 3:
-        return MyApp();
+        return JoinScreen();
       default:
         return Container(); // Return a default widget if index doesn't match any case
     }
