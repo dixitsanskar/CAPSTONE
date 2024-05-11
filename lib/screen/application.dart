@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mini_project/util/constants.dart';
 
+import '../model/room.dart';
+
 class Application extends StatelessWidget {
   const Application({Key? key}) : super(key: key);
 
@@ -384,7 +386,57 @@ class Application extends StatelessWidget {
                 Center(
                   child: GestureDetector(
                     onTap: (){
+                       List<TeamDetails> teamDetailsList = [
+                        TeamDetails(
+                          email: teamLeaderEmailController.text,
+                          gitlink: "",
+                          name: teamLeaderNameController.text,
+                          username: "",
+                        ),
+                        TeamDetails(
+                          email: member2EmailController.text,
+                          gitlink: "",
+                          name: member2NameController.text,
+                          username: "",
+                        ),
+                        TeamDetails(
+                          email: member3EmailController.text,
+                          gitlink: "",
+                          name: member3NameController.text,
+                          username: "",
+                        ),
+                        TeamDetails(
+                          email: member4EmailController.text,
+                          gitlink: "",
+                          name: member4NameController.text,
+                          username: "",
+                        ),
+                      ];
 
+                      TeamMembers teamMembers = TeamMembers(
+                        teamDetails: teamDetailsList,
+                        teamSize: teamDetailsList.length,
+                      );
+
+                      // Create Info instance
+                      Info info = Info(
+                        sId: null,
+                        problemId: null,
+                        roomId: null,
+                        roomName: teamNameController.text,
+                        roomToken: null,
+                        teamMembers: teamMembers,
+                      );
+
+                      // Create Room instance
+                      Room room = Room(
+                        info: info,
+                        status: null,
+                      );
+
+                      // Convert Room instance to JSON
+                      Map<String, dynamic> roomJson = room.toJson();
+                      
                     },
                     child: Container(
                     width: 360,

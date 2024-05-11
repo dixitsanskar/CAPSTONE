@@ -168,6 +168,32 @@ class SearchServices {
     }
   }
 
+  static Future<Map<String, dynamic>?> publishStatement(ProblemStatement statement) async {
+    var headers = {'Content-Type': 'application/json'};
+    var data = json.encode(statement.toJson());
+    var dio = Dio();
+
+    try {
+      var response = await dio.post(
+        '$baseUrl/add_statement',
+        options: Options(
+          headers: headers,
+        ),
+        data: data,
+      );
+
+      if (response.statusCode == 200) {
+        return response.data;
+      } else {
+        print('Error: ${response.statusCode}, ${response.statusMessage}');
+        return null;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return null;
+    }
+  }
+
 }
 
 
