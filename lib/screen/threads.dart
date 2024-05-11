@@ -1,177 +1,108 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:http/http.dart' as http;
+import 'package:mini_project/util/constants.dart';
+import 'package:mini_project/util/shared_pref.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 
-class Threadsss extends StatelessWidget {
-  const Threadsss({
-    super.key,
-  });
-
+class Threads extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          "Threaded Conversation",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-      ],
-    );
-  }
+  _ThreadsState createState() => _ThreadsState();
 }
 
-class Threads extends StatelessWidget {
-  Threads({
-    Key? key,
-  }) : super(key: key);
+class _ThreadsState extends State<Threads> {
+  final TextEditingController messageTextController = TextEditingController();
+  late IO.Socket socket;
+  List<String> messages = [];
+  var prefs = SharedPrefs.sharedPrefs;
 
-  final messageTextController = TextEditingController();
-  late String messageText;
 
-  late RxList messages = [
-    MessageBubble(
-      "Hi Sir, I am a flutter Developer. Can you please guide me!",
-      false,
-    ),
-    MessageBubble(
-      "Yes Sure",
-      true,
-    ),
-  ].obs;
+  @override
+  void initState() {
+    super.initState();
+    initSocket();
+    fetchMessages(); // Fetch initial messages
+  }
+
+  void initSocket() {
+    socket = IO.io(baseUrl, <String, dynamic>{
+      'transports': ['websocket'],
+      'autoConnect': true,
+    });
+
+    socket.on('message', (data) {
+      print('Received message: $data');
+      setState(() {
+        messages.add(data);
+      });
+    });
+
+    socket.connect();
+  }
+
+  void fetchMessages() async {
+    var url = Uri.parse('$baseUrl/messages');
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      List<dynamic> data = json.decode(response.body);
+      setState(() {
+        messages = data.map((message) => message['text'] as String).toList();
+      });
+    } else {
+      print('Failed to fetch messages. Error: ${response.reasonPhrase}');
+    }
+  }
+
+  void sendMessage(String message) {
+    String? user =  prefs.getString('username');
+    socket.emit('message', json.encode({'user': user, 'message': message}));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        automaticallyImplyLeading: false,
         title: Text("Threaded Conversation"),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Expanded(
-            // Wrap ListView.builder with Expanded
-            child: Container(
-              child: Obx(
-                () => ListView.builder(
-                  itemCount: messages.length, // Add itemCount property
-                  itemBuilder: (BuildContext context, int index) {
-                    return messages[index];
-                  },
-                ),
-              ),
+            child: ListView.builder(
+              itemCount: messages.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Text(messages[index]),
+                );
+              },
             ),
           ),
           Container(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
             height: 60,
             decoration: BoxDecoration(
               color: Colors.black,
             ),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Expanded(
                   child: TextField(
-                    style: TextStyle(color: Colors.white),
                     controller: messageTextController,
-                    onChanged: (value) {
-                      messageText = value;
-                    },
-                    decoration: InputDecoration(
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 10.0, horizontal: 0.0),
+                    decoration: InputDecoration.collapsed(
                       hintText: 'Send a message...',
                       hintStyle: TextStyle(color: Colors.white),
-                      icon: Padding(
-                        padding: EdgeInsets.all(4),
-                      ),
-                      border: InputBorder.none,
                     ),
-                    cursorColor: Colors.white,
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: 50,
-                    height: 33,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Color(0xff3E2F96),
-                    ),
-                    child: Center(
-                      child: IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: () {
-                          messages.add(MessageBubble(messageText, true));
-                          messageTextController.clear();
-                        },
-                        icon: Icon(Icons.send, color: Colors.white, size: 20),
-                      ),
-                    ),
-                  ),
+                IconButton(
+                  icon: Icon(Icons.send, color: Colors.white),
+                  onPressed: () {
+                    sendMessage(messageTextController.text);
+                    messageTextController.clear();
+                  },
                 ),
               ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class MessageBubble extends StatelessWidget {
-  MessageBubble(this.text, this.isMe);
-
-  final String text;
-  final bool isMe;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        left: isMe ? 80 : 10,
-        right: isMe ? 10 : 80,
-        bottom: 5,
-        top: 5,
-      ),
-      child: Column(
-        crossAxisAlignment:
-            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-        children: <Widget>[
-          Material(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(12),
-              topLeft: Radius.circular(12),
-              bottomRight: Radius.circular(12),
-              topRight: Radius.circular(12),
-            ),
-            color: isMe ? Colors.grey[300] : Color(0xffCDC6F2),
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    '$text',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: isMe ? Colors.black : Colors.black,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.done,
-                          size: 14, color: isMe ? Colors.black : Colors.black),
-                    ],
-                  ),
-                ],
-              ),
             ),
           ),
         ],

@@ -77,6 +77,7 @@ class _JoiningDetailsState extends State<JoiningDetails> {
             child: TextField(
               textAlign: TextAlign.center,
               style: const TextStyle(
+                color: Colors.white ,
                 fontWeight: FontWeight.w500,
               ),
               onChanged: ((value) => _meetingId = value),
@@ -90,7 +91,7 @@ class _JoiningDetailsState extends State<JoiningDetails> {
                   ),
                   hintText: "Enter meeting code",
                   hintStyle: const TextStyle(
-                    color: textGray,
+                    color: Colors.white,
                   ),
                   border: InputBorder.none),
             ),

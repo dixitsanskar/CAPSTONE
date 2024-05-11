@@ -244,44 +244,44 @@ class _CollaborationPageState extends State<CollaborationPage> {
                                 ],
                               ),
 
-                              Column(
-                                children: [
-                                  GestureDetector(
-                                    onTap: (){
+                              // Column(
+                              //   children: [
+                              //     GestureDetector(
+                              //       onTap: (){
 
-                                      setState(() {
-                                        select = 2;
-                                      });
-                                    },
-                                    child: Container(
-                                      margin: EdgeInsets.all(10),
-                                      width: 122,
-                                      height: 122,
-                                      decoration: ShapeDecoration(
-                                        color: NormalColorShade,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
-                                        ),
-                                        shadows: [
-                                          BoxShadow(
-                                            color: darkColorShade,
-                                            blurRadius: 4,
-                                            offset: Offset(0, 4),
-                                            spreadRadius: 0,
-                                          )
-                                        ],
-                                      ),
-                                      child: Icon(Icons.document_scanner_outlined,size: 50,),
-                                    ),
-                                  ),
+                              //         setState(() {
+                              //           select = 2;
+                              //         });
+                              //       },
+                              //       child: Container(
+                              //         margin: EdgeInsets.all(10),
+                              //         width: 122,
+                              //         height: 122,
+                              //         decoration: ShapeDecoration(
+                              //           color: NormalColorShade,
+                              //           shape: RoundedRectangleBorder(
+                              //             borderRadius: BorderRadius.circular(10),
+                              //           ),
+                              //           shadows: [
+                              //             BoxShadow(
+                              //               color: darkColorShade,
+                              //               blurRadius: 4,
+                              //               offset: Offset(0, 4),
+                              //               spreadRadius: 0,
+                              //             )
+                              //           ],
+                              //         ),
+                              //         child: Icon(Icons.document_scanner_outlined,size: 50,),
+                              //       ),
+                              //     ),
 
-                                  Text("Document Editing",
-                                    style: TextStyle(
-                                        fontSize: 13
-                                    ),)
+                              //     Text("Document Editing",
+                              //       style: TextStyle(
+                              //           fontSize: 13
+                              //       ),)
 
-                                ],
-                              ),
+                              //   ],
+                              // ),
 
                               Column(
                                 children: [
@@ -414,13 +414,13 @@ class Tools extends StatelessWidget {
         return Threads();
       case 1:
         return Container();
-      case 2:
-        return Container(
-          child: Center(
-            child:
-            Text(
-                "Future Implementation",),),
-        ); // Add return statement for case 2
+      // case 2:
+      //   return Container(
+      //     child: Center(
+      //       child:
+      //       Text(
+      //           "Future Implementation",),),
+      //   ); // Add return statement for case 2
       case 3:
         return JoinScreen();
       default:

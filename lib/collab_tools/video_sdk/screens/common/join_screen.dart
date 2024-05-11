@@ -272,7 +272,7 @@ class _JoinScreenState extends State<JoinScreen> {
                                           vertical: 16),
                                       color: black750,
                                       child: const Text("Join Meeting",
-                                          style: TextStyle(fontSize: 16)),
+                                          style: TextStyle(fontSize: 16, color: purple)),
                                       onPressed: () => {
                                             setState(() => {
                                                   isCreateMeetingSelected =

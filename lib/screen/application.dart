@@ -382,7 +382,11 @@ class Application extends StatelessWidget {
                   height: 20,
                 ),
                 Center(
-                  child: Container(
+                  child: GestureDetector(
+                    onTap: (){
+
+                    },
+                    child: Container(
                     width: 360,
                     height: 35,
                     decoration: ShapeDecoration(
@@ -404,6 +408,7 @@ class Application extends StatelessWidget {
                       ),
                     ),
                   ),
+                  )
                 ),
               ],
             ),

@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mini_project/logic/controller/authController.dart';
+import 'package:mini_project/route/route.dart';
 import 'package:mini_project/screen/initialDetails.dart';
 import 'package:mini_project/screen/mainlayout.dart';
 
 class LoginScreen extends StatelessWidget {
-   const LoginScreen({super.key});
+ LoginScreen({Key? key}) : super(key: key);
+
+      final TextEditingController _usernameController = TextEditingController();
+    final TextEditingController _passwordController = TextEditingController();
+
+    final controller = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
@@ -50,6 +60,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       TextField(
+                        controller: _usernameController,
                         decoration: InputDecoration(
                           hintText: 'Username',
                           border: OutlineInputBorder(),
@@ -60,6 +71,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       TextField(
+                        controller: _passwordController,
                         decoration: InputDecoration(
                           hintText: 'Password',
                           border: OutlineInputBorder(),
@@ -73,9 +85,16 @@ class LoginScreen extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {
                           // Add login logic here
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MyAppBar(),
-                          ));
+                          String username = _usernameController.text;
+                          String password = _passwordController.text;
+                          // Do something with username and password
+                          controller.signInWithEmail(username, password).then((value){
+                            print("loggedin");
+                               controller.SignedIn();
+                               Navigator.of(context).popAndPushNamed(Routes.mainscreen);
+                          });
+
+                         
                         },
                         child: Text(
                           'Sign In',

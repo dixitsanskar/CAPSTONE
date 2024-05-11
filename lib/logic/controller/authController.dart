@@ -21,7 +21,10 @@ class AuthController extends GetxController {
   static const String _keyGitLink = 'gitlink';
   static const String _keyLinLink = 'linlink';
 
-
+  void SignedIn(){
+    isSignedIn = true;
+    update();
+  }
   
   @override
   void onInit() async{
@@ -57,6 +60,7 @@ class AuthController extends GetxController {
     prefs.setString(_keyGitLink, value.gitlink ?? "");
     prefs.setString(_keyLinLink, value.linlink ?? "");
         }
+
       });
 
     } catch (e) {
