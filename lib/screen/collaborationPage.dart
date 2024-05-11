@@ -8,11 +8,14 @@ import 'package:mini_project/collab_tools/video_sdk/screens/common/join_screen.d
 import 'package:mini_project/model/user.dart';
 import 'package:mini_project/screen/callPage.dart';
 import 'package:mini_project/screen/call_page/calling_page.dart';
+import 'package:mini_project/screen/notepad.dart';
 import 'package:mini_project/util/constants.dart';
 import 'package:mini_project/screen/threads.dart';
 
 class CollaborationPage extends StatefulWidget {
-  CollaborationPage({Key? key,}) : super(key: key);
+  CollaborationPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<CollaborationPage> createState() => _CollaborationPageState();
@@ -27,9 +30,20 @@ class _CollaborationPageState extends State<CollaborationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Capstone',style: TextStyle(color: Colors.white),),
+        title: Text(
+          'Capstone',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: darkColorShade,
-        leading: IconButton(icon: Icon(Icons.arrow_back_outlined,color: Colors.white,),onPressed: (){Get.back();},),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_outlined,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Get.back();
+          },
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -40,7 +54,7 @@ class _CollaborationPageState extends State<CollaborationPage> {
               Column(
                 children: [
                   Container(
-                   width: MediaQuery.of(context).size.width * 0.6,
+                    width: MediaQuery.of(context).size.width * 0.6,
                     // height: 538,
                     decoration: ShapeDecoration(
                       color: NormalColorShade,
@@ -61,32 +75,32 @@ class _CollaborationPageState extends State<CollaborationPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                      Text.rich(
-                      TextSpan(
-                      children: [
-                        TextSpan(
-                        text: 'Team Name : ',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w600,
-                          height: 0,
-                        ),
-                      ),
-                                  TextSpan(
-                                    text: teamDetails['teamName'],
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w400,
-                                      height: 0,
-                                    ),
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Team Name : ',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w600,
+                                    height: 0,
                                   ),
-                                  ],
                                 ),
-                      ),
+                                TextSpan(
+                                  text: teamDetails['teamName'],
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           Text(
                             'Team Members:-',
                             style: TextStyle(
@@ -97,8 +111,6 @@ class _CollaborationPageState extends State<CollaborationPage> {
                               height: 0,
                             ),
                           ),
-
-
                           ListView.builder(
                             shrinkWrap: true,
                             primary: false,
@@ -107,7 +119,9 @@ class _CollaborationPageState extends State<CollaborationPage> {
                               return Row(
                                 children: [
                                   Icon(Icons.person),
-                                  SizedBox(width: 10,),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
                                   Text(
                                     teamDetails['teamMembers'][index],
                                     style: TextStyle(
@@ -122,18 +136,15 @@ class _CollaborationPageState extends State<CollaborationPage> {
                               );
                             },
                           )
-
-
-
                         ],
                       ),
                     ),
                   ),
-
-                  SizedBox(height: 20,),
-
+                  SizedBox(
+                    height: 20,
+                  ),
                   Container(
-                   width: MediaQuery.of(context).size.width * 0.6,
+                    width: MediaQuery.of(context).size.width * 0.6,
                     // height: 538,
                     decoration: ShapeDecoration(
                       color: NormalColorShade,
@@ -164,13 +175,12 @@ class _CollaborationPageState extends State<CollaborationPage> {
                               height: 0,
                             ),
                           ),
-
                           Row(
                             children: [
                               Column(
                                 children: [
                                   GestureDetector(
-                                    onTap: (){
+                                    onTap: () {
                                       setState(() {
                                         select = 0;
                                       });
@@ -182,7 +192,8 @@ class _CollaborationPageState extends State<CollaborationPage> {
                                       decoration: ShapeDecoration(
                                         color: NormalColorShade,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                         ),
                                         shadows: [
                                           BoxShadow(
@@ -193,22 +204,22 @@ class _CollaborationPageState extends State<CollaborationPage> {
                                           )
                                         ],
                                       ),
-                                      child: Icon(Icons.chat,size: 50,),
+                                      child: Icon(
+                                        Icons.chat,
+                                        size: 50,
+                                      ),
                                     ),
                                   ),
-
-                                  Text("Threads",
-                                  style: TextStyle(
-                                    fontSize: 13
-                                  ),)
-
+                                  Text(
+                                    "Threads",
+                                    style: TextStyle(fontSize: 13),
+                                  )
                                 ],
                               ),
-
                               Column(
                                 children: [
                                   GestureDetector(
-                                    onTap: (){
+                                    onTap: () {
                                       setState(() {
                                         select = 0;
                                         Get.to(KanbanBoard());
@@ -221,7 +232,8 @@ class _CollaborationPageState extends State<CollaborationPage> {
                                       decoration: ShapeDecoration(
                                         color: NormalColorShade,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                         ),
                                         shadows: [
                                           BoxShadow(
@@ -232,23 +244,22 @@ class _CollaborationPageState extends State<CollaborationPage> {
                                           )
                                         ],
                                       ),
-                                      child: Icon(Icons.task_outlined,size: 50,),
+                                      child: Icon(
+                                        Icons.task_outlined,
+                                        size: 50,
+                                      ),
                                     ),
                                   ),
-
-                                  Text("Task Management",
-                                    style: TextStyle(
-                                        fontSize: 13
-                                    ),)
-
+                                  Text(
+                                    "Task Management",
+                                    style: TextStyle(fontSize: 13),
+                                  )
                                 ],
                               ),
-
                               Column(
                                 children: [
                                   GestureDetector(
-                                    onTap: (){
-
+                                    onTap: () {
                                       setState(() {
                                         select = 2;
                                       });
@@ -260,7 +271,8 @@ class _CollaborationPageState extends State<CollaborationPage> {
                                       decoration: ShapeDecoration(
                                         color: NormalColorShade,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                         ),
                                         shadows: [
                                           BoxShadow(
@@ -271,22 +283,22 @@ class _CollaborationPageState extends State<CollaborationPage> {
                                           )
                                         ],
                                       ),
-                                      child: Icon(Icons.document_scanner_outlined,size: 50,),
+                                      child: Icon(
+                                        Icons.document_scanner_outlined,
+                                        size: 50,
+                                      ),
                                     ),
                                   ),
-
-                                  Text("Document Editing",
-                                    style: TextStyle(
-                                        fontSize: 13
-                                    ),)
-
+                                  Text(
+                                    "Document Editing",
+                                    style: TextStyle(fontSize: 13),
+                                  )
                                 ],
                               ),
-
                               Column(
                                 children: [
                                   GestureDetector(
-                                    onTap: (){
+                                    onTap: () {
                                       setState(() {
                                         select = 3;
                                       });
@@ -298,7 +310,8 @@ class _CollaborationPageState extends State<CollaborationPage> {
                                       decoration: ShapeDecoration(
                                         color: NormalColorShade,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                         ),
                                         shadows: [
                                           BoxShadow(
@@ -309,28 +322,29 @@ class _CollaborationPageState extends State<CollaborationPage> {
                                           )
                                         ],
                                       ),
-                                      child: Icon(Icons.videocam_outlined,size: 50,),
+                                      child: Icon(
+                                        Icons.videocam_outlined,
+                                        size: 50,
+                                      ),
                                     ),
                                   ),
-
-                                  Text("Video Conferenceing",
+                                  Text(
+                                    "Video Conferenceing",
                                     style: TextStyle(
-                                        fontSize: 13,
-                                    ),)
+                                      fontSize: 13,
+                                    ),
+                                  )
                                 ],
                               ),
-
-
                             ],
                           )
-
                         ],
                       ),
                     ),
                   ),
-
-                  SizedBox(height: 20,),
-
+                  SizedBox(
+                    height: 20,
+                  ),
                   Container(
                     width: MediaQuery.of(context).size.width * 0.6,
                     decoration: ShapeDecoration(
@@ -362,18 +376,16 @@ class _CollaborationPageState extends State<CollaborationPage> {
                               height: 0,
                             ),
                           ),
-                        Text(teamDetails['problemStatement'])
+                          Text(teamDetails['problemStatement'])
                         ],
                       ),
                     ),
                   )
-
                 ],
               ),
-
-              Tools(index: select,),
-
-
+              Tools(
+                index: select,
+              ),
             ],
           ),
         ),
@@ -415,12 +427,7 @@ class Tools extends StatelessWidget {
       case 1:
         return Container();
       case 2:
-        return Container(
-          child: Center(
-            child:
-            Text(
-                "Future Implementation",),),
-        ); // Add return statement for case 2
+        return Notepad(); // Add return statement for case 2
       case 3:
         return JoinScreen();
       default:
