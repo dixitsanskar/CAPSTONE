@@ -3,7 +3,7 @@ import 'package:mini_project/screen/initialDetails.dart';
 import 'package:mini_project/screen/mainlayout.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -82,9 +82,7 @@ class LoginScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 16),
                         ),
                       ),
-                      SizedBox(
-                          height:
-                              10), // Add space between sign-in button and "Don't have an account?" text
+                      SizedBox(height: 10), // Add space between sign-in button and "Don't have an account?" text
                       InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
